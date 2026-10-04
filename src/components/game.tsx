@@ -155,6 +155,7 @@ export function Game() {
             <Reader {...you} selected={selected} disabled={busy} onSelect={setSelected} onSearch={() => setSearching(true)} />
             {searching && playing && <LinkSearch links={you.links} disabled={busy} onClose={() => setSearching(false)} onPick={pickFromSearch} />}
             <div className="movebar">
+              <span className="venn-mini">Venn is on <strong>{venn.title}</strong>{commitment ? (hint ? ` · “${hint}”` : "") : " · deciding…"}</span>
               <span className="selected-label">{selected ? <>Your move: <strong>{selected}</strong></> : <span className="muted">{game.tutorial && !reveal ? "Pick a link that might lead toward Venn's page. You both move at once." : "Pick a link in your article."}</span>}</span>
               <span className="actions">
                 <button className="btn quiet" disabled={!you.canStepBack || !commitment || busy} onClick={() => void send(STEP_BACK)} title={you.back ? `Back to ${you.back}` : "Nothing to go back to yet"}>Step back</button>

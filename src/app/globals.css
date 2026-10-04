@@ -71,6 +71,11 @@ fieldset { border: 0; padding: 0; margin: 0; }
 .play { display: grid; grid-template-columns: minmax(0, 1fr) 21rem; gap: 1.5rem; align-items: start; }
 @media (max-width: 900px) { .play { grid-template-columns: 1fr; } .side { order: -1; } }
 .side { position: sticky; top: 1rem; display: grid; gap: 1rem; }
+/* Stacked above the article on narrow screens, a pinned sidebar would cover
+   the text; it scrolls away instead and the move bar keeps a one-line summary. */
+@media (max-width: 900px) { .side { position: static; } }
+.venn-mini { display: none; }
+@media (max-width: 900px) { .venn-mini { display: block; width: 100%; font-size: 0.85rem; color: var(--venn); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
 .reader { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.5rem 1.75rem 2rem; }
 .reader-head { display: flex; justify-content: space-between; gap: 1rem; align-items: start; border-bottom: 1px solid var(--rule); padding-bottom: 0.8rem; margin-bottom: 1rem; }
 .reader-title { font-family: var(--serif); font-size: 2rem; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
