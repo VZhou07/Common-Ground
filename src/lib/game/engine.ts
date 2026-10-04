@@ -124,10 +124,11 @@ export async function move(o: { token: string; move: string; profile: Profile })
   const c2 = p.cfn(y.vector, x.vector);
   const dc = c2 - p.c;
   const yourGain = yourShare(p.cfn, p.you.vector, y.vector, p.venn.vector, x.vector);
-  const v = judge(yourGain, p.difficulty.convergingExists);
+  const meeting = isMeeting(yourNext, vennNext);
+  // Landing on Venn's page converges by definition, however close you already were.
+  const v = meeting ? "converged" : judge(yourGain, p.difficulty.convergingExists);
   const driftBefore = state.drift;
   state.drift = nextDrift(state.drift, dc);
-  const meeting = isMeeting(yourNext, vennNext);
   const sensitive = y.policy !== "play" || x.policy !== "play";
   const yourBucket = sensitive ? null : y.top[0] ?? null;
   const readRight = !!pending.read.bucket && yourBucket === pending.read.bucket;
