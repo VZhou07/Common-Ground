@@ -122,6 +122,10 @@ test("the reaction line: good LLM lines pass; links, markup, off-page titles and
   const offPage = p.vennOptions.find(o => o.title.includes(" ") && o.title !== "Fractal")!.title;
   assert.equal(await run(`Next I'm going to ${offPage}.`), fallback);
   assert.equal(await run("x".repeat(141)), fallback);
+  // Seen live: Snow vs Fractal is close, but "we both found" claims a meeting that didn't happen.
+  assert.equal(await run("We both found Snow, great minds think alike!"), fallback);
+  setLlmFetch(fakeAnthropic([{ text: "There you are: we met at Snow." }]).fetcher);
+  assert.equal(await voiceLine({ ...facts, met: true, venn: "Snow" }, fallback, p), "There you are: we met at Snow.");
 });
 
 test("the injection in a description doesn't change the line: model output is checked, not trusted", async () => {
