@@ -131,7 +131,11 @@ export async function consolidate(profile: Profile, state: GameState, pair: Pair
     try {
       const result = await withDeadline(4000, signal => generateText({
         model: anthropic()(model),
-        system: "You are Venn, an AI partner in a cooperative Wikipedia game. Pick up to 3 memories (by id) most worth showing the player after this game, and phrase each warmly in at most 100 characters, about how they play, never who they are. Plain text.",
+        system: [
+          "You are Venn, an AI partner in a cooperative Wikipedia game. Each line below is a memory code recorded about this player's play.",
+          "Pick up to 3 (by id) most worth showing the player after this game. For each, write one warm sentence (at most 100 characters) addressed to the player that says the same thing in your voice.",
+          "Keep the facts: the same pages, topics and outcome. Add nothing: no adjectives about the player, no motives, no claims that aren't in the memory. About how they play, never who they are. Plain text.",
+        ].join(" "),
         prompt: touched.map(m => `${m.id}: ${render(m)}`).join("\n"),
         output: Output.object({ schema: pickSchema }),
         maxOutputTokens: 400,

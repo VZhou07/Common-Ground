@@ -85,7 +85,7 @@ export function EndReport({ report, onAgain }: { report: Report; onAgain: () => 
           <p className="kicker">Stated versus revealed</p>
           <p style={{ margin: "0.2rem 0" }}>You said: {svr.stated.length ? svr.stated.map(bucketLabel).join(", ") : "nothing yet"}</p>
           <p style={{ margin: "0.2rem 0" }}>You went: {svr.revealed.length ? svr.revealed.map(r => `${bucketLabel(r.bucket)} (${Math.round(r.share * 100)}%)`).join(", ") : "not enough moves yet"}</p>
-          {svr.stated.length > 0 && svr.revealed.length > 0 && <p className="faint">{svr.agrees ? "Where you go matches what you said." : "Where you go differs from what you said. Interesting."}</p>}
+          {svr.stated.length > 0 && svr.revealed.length > 0 && <p className="faint">{svr.moves < 3 ? "Too early to compare: a few more moves first." : svr.agrees ? "Where you go matches what you said." : "Where you go differs from what you said. Interesting."}</p>}
         </div>
       </div>
 
@@ -94,7 +94,11 @@ export function EndReport({ report, onAgain }: { report: Report; onAgain: () => 
         {report.remember.length ? (
           <ul>{report.remember.map(m => (
             <li key={m.id}>
-              <span><span className="text">{m.phrasing ?? m.text}</span><br /><span className="faint">{m.type} · {m.evidence}</span></span>
+              <span>
+                <span className="text">{m.phrasing ?? m.text}</span><br />
+                {m.phrasing && <><span className="muted">Stored as: {m.text}</span><br /></>}
+                <span className="faint">{m.type} · {m.evidence}</span>
+              </span>
               {decided[m.id] ? <span className="faint">{decided[m.id] === "kept" ? "Kept ✓" : "Forgotten"}</span> : (
                 <span style={{ display: "flex", gap: "0.3rem" }}>
                   <button className="btn secondary" onClick={() => decide(m.id, true)} aria-label={`Keep: ${m.text}`}>✓</button>
