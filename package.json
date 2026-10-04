@@ -10,9 +10,10 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
     "check": "npm run lint && npm run typecheck",
-    "test": "tsx --conditions=react-server --test tests/*.test.ts",
+    "test": "tsx --conditions=react-server --test --test-isolation=none tests/*.test.ts",
     "prepare:pairs": "node --env-file-if-exists=.env.local --import tsx scripts/prepare.ts",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "core:index": "node scripts/core-index.mjs"
   },
   "engines": {
     "node": ">=22.0.0"
