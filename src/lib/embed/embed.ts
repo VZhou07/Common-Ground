@@ -62,14 +62,14 @@ function localVector(text: string): Float32Array {
     tokens.forEach((t, i) => {
       add(`w:${t}`, weight);
       if (i > 0) add(`b:${tokens[i - 1]}_${t}`, weight * 0.5);
-      for (const c of CONCEPTS.get(t) ?? []) add(`c:${c}`, weight * 1.2);
+      for (const c of CONCEPTS.get(t) ?? []) add(`c:${c}`, weight * 2);
     });
   }
   return normalize(v);
 }
 
 export const localEmbedder: Embedder = {
-  id: `local-hash-v1-${DIMS}`,
+  id: `local-hash-v2-${DIMS}`,
   async embed(texts) { return texts.map(localVector); },
 };
 

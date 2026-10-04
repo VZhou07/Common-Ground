@@ -59,7 +59,10 @@ export function tagVector(v: Float32Array, a: Float32Array[], title?: string): T
     const total = pinned.outlink.reduce((s, o) => s + o.score, 0);
     probs = probs.map((p, k) => 0.3 * p + 0.7 * (pinned.outlink.find(o => o.bucket === BUCKET_IDS[k])?.score ?? 0) / total);
   }
-  const top = BUCKET_IDS.map((id, k) => [id, probs[k]] as const).sort((x, y) => y[1] - x[1]).slice(0, 2).map(([id]) => id);
+  const ranked = BUCKET_IDS.map((id, k) => [id, probs[k]] as const).sort((x, y) => y[1] - x[1]);
+  // The second tag only when it carries real weight, so a math page isn't
+  // shown as "Math & logic, Film, TV & games" on noise.
+  const top = ranked.slice(0, 2).filter(([, p], i) => i === 0 || (p >= 0.12 && p >= 0.35 * ranked[0][1])).map(([id]) => id);
   return { probs, top };
 }
 
