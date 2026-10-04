@@ -9,7 +9,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { cachedArticle, cachedOutlink, cachedViews } from "./cache";
 import { checkRoute, makePair, pairTitles, type Pair, type Proposer, type RoutePaths } from "../src/lib/game/makepair";
 import { BUCKET_SEEDS, MATH_SEEDS } from "../src/lib/game/seeds";
-import { bucketsFromOutlink, type BucketId } from "../src/lib/topics/buckets";
+import { BUCKETS, bucketsFromOutlink, type BucketId } from "../src/lib/topics/buckets";
 import { dot, embedder } from "../src/lib/embed/embed";
 import { encodeInt8, pageText, vectors } from "../src/lib/embed/store";
 import type { Article } from "../src/lib/wiki/types";
@@ -57,11 +57,12 @@ async function buildEmbeddings(pages: Record<string, Article>) {
   }
   const topics = existsSync("data/topics.json") ? JSON.parse(readFileSync("data/topics.json", "utf8")) as Record<string, { description: string }> : {};
   for (const [t, v] of Object.entries(topics)) texts.add(pageText(t, v.description));
+  for (const b of BUCKETS) texts.add(`${b.label} — ${b.about}`);
   const list = [...texts];
   log(`embeddings: ${list.length} texts with ${e.id}`);
-  const vectors = await e.embed(list);
-  writeFileSync("data/embeddings.bin", encodeInt8(vectors));
-  writeFileSync("data/embeddings.json", JSON.stringify({ id: e.id, dims: vectors[0].length, texts: list }));
+  const prepared = await vectors(list);
+  writeFileSync("data/embeddings.bin", encodeInt8(prepared));
+  writeFileSync("data/embeddings.json", JSON.stringify({ id: e.id, dims: prepared[0].length, texts: list }));
 }
 
 if (args.has("--embed")) {
