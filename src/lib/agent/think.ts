@@ -40,15 +40,16 @@ export async function decideTurn(p: Perception, profile: Profile, state: GameSta
   // 4. ★ CORE-GATE-2: the planner decides instantly unless it's a close call
   //    and the LLM is available. Which path was taken is always logged.
   if (!pl.gate.deliberate || !llmEnabled()) {
-    return finish(seal(p, pl, pl.best.title, stanceForMove(pl, pl.best.title), null, [], { ...considered, path: "planner", gate: pl.gate.reason, llm: llmEnabled() ? "skipped" : "off" }, state));
+    return finish(seal(p, pl, pl.best.title, stanceForMove(pl, pl.best.title, p), null, [], { ...considered, path: "planner", gate: pl.gate.reason, llm: llmEnabled() ? "skipped" : "off" }, state));
   }
   const remaining = Math.max(1000, deadlineMs - (Date.now() - started) - 600);
   const d = await deliberate({ p, profile, shortlist: pl.shortlist, context, stance: pl.stance, drift: state.drift, predictedBucket: predicted, deadlineMs: remaining });
   if (!d.ok) {
     // ★ CORE-DELIB-2: any failure (schema, bad choice, bad citation, timeout)
     // falls back to the planner's move.
-    return finish(seal(p, pl, pl.best.title, stanceForMove(pl, pl.best.title), null, [], { ...considered, recalled: d.recalled, path: "fallback", gate: pl.gate.reason, llm: "failed", failure: d.failure }, state));
+    return finish(seal(p, pl, pl.best.title, stanceForMove(pl, pl.best.title, p), null, [], { ...considered, recalled: d.recalled, path: "fallback", gate: pl.gate.reason, llm: "failed", failure: d.failure }, state));
   }
   const used = considered.used.map(u => ({ ...u, cited: d.cited.includes(u.id) }));
-  return finish(seal(p, pl, d.choice.title, d.stance, d.read, d.cited, { ...considered, used, recalled: d.recalled, path: "llm", gate: pl.gate.reason, llm: "used", reason: d.reason }, state));
+  // The hint describes the move, so its stance comes from the move, not the model.
+  return finish(seal(p, pl, d.choice.title, stanceForMove(pl, d.choice.title, p), d.read, d.cited, { ...considered, used, recalled: d.recalled, path: "llm", gate: pl.gate.reason, llm: "used", reason: d.reason }, state));
 }

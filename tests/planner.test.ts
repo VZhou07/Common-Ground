@@ -2,7 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { localEmbedder, setEmbedder } from "../src/lib/embed/embed";
 import { perceive, type Perception } from "../src/lib/agent/perceive";
-import { GATE_ENTROPY, GATE_MARGIN, plan, yourDistribution, type PlanInput } from "../src/lib/agent/planner";
+import { GATE_ENTROPY, GATE_MARGIN, plan, stanceForMove, yourDistribution, type PlanInput } from "../src/lib/agent/planner";
+import { TAU } from "../src/lib/closeness/closeness";
 import { selectContext, BUDGET } from "../src/lib/context/select";
 import { render, situationOf } from "../src/lib/context/memory";
 import { freshProfile, type MemoryItem, type Profile } from "../src/lib/model/profile";
@@ -51,6 +52,19 @@ test("rescue switches on at drift 3: lead stance, a rescue role, and rescue valu
   assert.ok(lost.scored.some(s => s.parts.rescue > 0));
   assert.ok(lost.shortlist.some(c => c.roles.includes("rescue")));
   assert.match(hintFor("normal", "lead", "math", true, "x").text, /^Let's regroup/);
+});
+
+test("a move with no shortlist role is described by what it does, not by the plan's stance", () => {
+  // Every planner stance, none of the moves on a shortlist: "I'll follow you"
+  // must never be said for a move that doesn't come toward your page.
+  for (const stance of ["follow", "lead", "hold"] as const) {
+    const pl = { ...plan(input()), stance, shortlist: [] };
+    for (const x of p.vennOptions) {
+      const said = stanceForMove(pl, x.title, p);
+      if (said === "follow") assert.ok(p.cfn(x.vector, p.you.vector) - p.c > TAU, x.title);
+      if (p.cfn(x.vector, p.you.vector) - p.c > TAU) assert.equal(said, "follow", x.title);
+    }
+  }
 });
 
 test("the close-call gate deliberates exactly when the margin or entropy says so", () => {

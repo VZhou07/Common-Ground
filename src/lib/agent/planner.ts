@@ -23,6 +23,7 @@ export const LAMBDA0 = 0.25;
 const PLAN_W = 0.15, ROUTE_W = 0.2, SCRIPT_W = 0.4, LEGIBLE_W = 0.12, RESCUE_W = 0.5, REVISIT = 0.25, SENSITIVE = 0.5;
 export const GATE_MARGIN = 0.15;
 export const GATE_ENTROPY = 0.85;
+const HOLD_NEAR = 0.85; // closeness to Venn's current page that still counts as staying put
 
 // Does option y do what the hint suggested? (the follows_hint feature)
 export function followsHint(hint: Hint | null, p: Perception, i: number): 0 | 1 {
@@ -192,11 +193,18 @@ export function plan(input: PlanInput): Plan {
 
 // The stance a chosen move actually expresses, from its shortlist roles, so
 // the hint and the reaction line can't contradict the move.
-export function stanceForMove(pl: Plan, title: string): Stance {
+export function stanceForMove(pl: Plan, title: string, p: Perception): Stance {
   const roles = pl.shortlist.find(c => c.title === title)?.roles ?? [];
   if (roles.includes("rescue") || (pl.rescue && roles.includes("lead"))) return "lead";
   if (roles.includes("follow")) return "follow";
   if (roles.includes("lead")) return "lead";
   if (roles.includes("meet")) return "hold";
-  return pl.stance;
+  // Best overall but no role of its own: describe the move itself. Toward
+  // your page is following, a near neighbour of Venn's page is holding, and
+  // anything else is leading.
+  const x = p.vennOptions.find(o => o.title === title);
+  if (!x) return pl.stance;
+  if (p.cfn(x.vector, p.you.vector) - p.c > TAU) return "follow";
+  if (p.cfn(x.vector, p.venn.vector) >= HOLD_NEAR) return "hold";
+  return "lead";
 }
