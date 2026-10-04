@@ -1,0 +1,1486 @@
+{
+ "A Random Walk Down Wall Street": {
+  "description": "1973 book by Burton Malkiel",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.9883227348327637
+   },
+   {
+    "bucket": "business",
+    "score": 0.982567548751831
+   },
+   {
+    "bucket": "screen",
+    "score": 0.7186043858528137
+   }
+  ]
+ },
+ "Alexandria": {
+  "description": "City in Egypt",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.8311530351638794
+   }
+  ]
+ },
+ "Alpine skiing": {
+  "description": "Sport of skiing downhill",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9993003606796265
+   }
+  ]
+ },
+ "Archimedes": {
+  "description": "Greek mathematician and physicist (c. 287 – 212 BC)",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.6926519870758057
+   }
+  ]
+ },
+ "Bauhaus": {
+  "description": "German art school and art movement",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.8670457601547241
+   },
+   {
+    "bucket": "places",
+    "score": 0.5621865391731262
+   }
+  ]
+ },
+ "Cephalopod": {
+  "description": "Class of mollusks",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9802908897399902
+   }
+  ]
+ },
+ "Chaos theory": {
+  "description": "Field of mathematics and science based on non-linear systems and initial conditions",
+  "outlink": []
+ },
+ "Cheese": {
+  "description": "Curdled milk food product",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9732507467269897
+   }
+  ]
+ },
+ "Conic section": {
+  "description": "Curve from a cone intersecting a plane",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.960371196269989
+   }
+  ]
+ },
+ "Cube": {
+  "description": "Solid with six equal square faces",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9344051480293274
+   }
+  ]
+ },
+ "Cumulative frequency analysis": {
+  "description": "Analysis of values below a reference point",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9990094900131226
+   }
+  ]
+ },
+ "Efficient-market hypothesis": {
+  "description": "Economic theory that asset prices fully reflect all available information",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9949496984481812
+   }
+  ]
+ },
+ "Eratosthenes": {
+  "description": "Greek librarian, mathematician, geographer, and poet",
+  "outlink": [
+   {
+    "bucket": "history",
+    "score": 0.6654205918312073
+   },
+   {
+    "bucket": "places",
+    "score": 0.5698626637458801
+   }
+  ]
+ },
+ "Euclid": {
+  "description": "Ancient Greek mathematician (fl. 300 BC)",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.754925012588501
+   },
+   {
+    "bucket": "history",
+    "score": 0.4301573634147644
+   }
+  ]
+ },
+ "Euclidean geometry": {
+  "description": "Mathematical model of the physical space",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.960371196269989
+   }
+  ]
+ },
+ "Eulerian path": {
+  "description": "Trail in a graph that visits each edge once",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9808859825134277
+   }
+  ]
+ },
+ "Fair division": {
+  "description": "Problem of sharing resources",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9124462008476257
+   },
+   {
+    "bucket": "math",
+    "score": 0.8558611869812012
+   },
+   {
+    "bucket": "tech",
+    "score": 0.7606606483459473
+   }
+  ]
+ },
+ "Fibonacci sequence": {
+  "description": "Numbers obtained by adding the two previous ones",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9124462008476257
+   }
+  ]
+ },
+ "Fractal": {
+  "description": "Infinitely detailed mathematical structure",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.607673168182373
+   }
+  ]
+ },
+ "Fractal landscape": {
+  "description": "Stochastically generated naturalistic terrain",
+  "outlink": []
+ },
+ "Frequency (statistics)": {
+  "description": "Number of occurrences in an experiment or study",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9883227348327637
+   }
+  ]
+ },
+ "Frequency analysis": {
+  "description": "Study of the frequency of letters or groups of letters in a ciphertext",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9496793746948242
+   },
+   {
+    "bucket": "tech",
+    "score": 0.9481645226478577
+   }
+  ]
+ },
+ "Galileo Galilei": {
+  "description": "Italian physicist and astronomer (1564–1642)",
+  "outlink": []
+ },
+ "Game theory": {
+  "description": "Mathematical models of strategic interactions",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.7826725244522095
+   },
+   {
+    "bucket": "math",
+    "score": 0.4765896201133728
+   }
+  ]
+ },
+ "Golden ratio": {
+  "description": "Number, approximately 1.618",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.6992644667625427
+   }
+  ]
+ },
+ "Golden spiral": {
+  "description": "Self-similar curve related to golden ratio",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9099169969558716
+   }
+  ]
+ },
+ "Hexagon": {
+  "description": "Shape with six sides",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9496793746948242
+   }
+  ]
+ },
+ "Hexagonal tiling": {
+  "description": "Regular tiling of a two-dimensional space",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.8740872144699097
+   }
+  ]
+ },
+ "Honey bee": {
+  "description": "Colonial flying insect",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9648651480674744
+   }
+  ]
+ },
+ "Honeycomb": {
+  "description": "Collection of wax cells built by honeybees",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.8903042674064636
+   }
+  ]
+ },
+ "Interval (music)": {
+  "description": "Difference in pitch between two notes",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9899964332580566
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9867871999740601
+   }
+  ]
+ },
+ "Johannes Kepler": {
+  "description": "German astronomer and mathematician (1571–1630)",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.5078218579292297
+   }
+  ]
+ },
+ "Knot theory": {
+  "description": "Study of mathematical knots",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9324633479118347
+   }
+  ]
+ },
+ "Koch snowflake": {
+  "description": "Fractal curve",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.6992644667625427
+   }
+  ]
+ },
+ "Latin square": {
+  "description": "Square array with symbols that each occur once per row and column",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9416641592979431
+   }
+  ]
+ },
+ "Leonhard Euler": {
+  "description": "Swiss mathematician (1707–1783)",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.7371681928634644
+   }
+  ]
+ },
+ "Library of Alexandria": {
+  "description": "Library in ancient Alexandria, Egypt",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9466066956520081
+   },
+   {
+    "bucket": "history",
+    "score": 0.7122421860694885
+   }
+  ]
+ },
+ "Logarithm": {
+  "description": "Mathematical function, inverse of an exponential function",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.960371196269989
+   }
+  ]
+ },
+ "Logarithmic spiral": {
+  "description": "Self-similar growth curve",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.7248802781105042
+   }
+  ]
+ },
+ "M. C. Escher": {
+  "description": "Dutch graphic artist (1898–1972)",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.6654205918312073
+   }
+  ]
+ },
+ "Mandelbrot set": {
+  "description": "Fractal named after mathematician Benoit Mandelbrot",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.7248802781105042
+   }
+  ]
+ },
+ "Markov chain": {
+  "description": "Random process independent of past history",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.7981967926025391
+   }
+  ]
+ },
+ "Minecraft": {
+  "description": "2011 video game",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9942797422409058
+   }
+  ]
+ },
+ "Mozzarella": {
+  "description": "Type of semi-soft Italian cheese",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9841036200523376
+   },
+   {
+    "bucket": "places",
+    "score": 0.4921981394290924
+   }
+  ]
+ },
+ "Musical tuning": {
+  "description": "Terms for tuning an instrument and a systems of pitches",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9967369437217712
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9899964332580566
+   }
+  ]
+ },
+ "Nautilus": {
+  "description": "Family of molluscs",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9706977605819702
+   }
+  ]
+ },
+ "Normal distribution": {
+  "description": "Probability distribution",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9715740084648132
+   }
+  ]
+ },
+ "Octopus": {
+  "description": "Soft-bodied eight-limbed order of molluscs",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9553291201591492
+   }
+  ]
+ },
+ "Op art": {
+  "description": "Art movement",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.9019306898117065
+   }
+  ]
+ },
+ "Padua": {
+  "description": "City in Veneto, Italy",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9566442370414734
+   }
+  ]
+ },
+ "Parabola": {
+  "description": "Plane curve: conic section",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9124462008476257
+   }
+  ]
+ },
+ "Parabolic reflector": {
+  "description": "Reflector that has the shape of a paraboloid",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.7606606483459473
+   }
+  ]
+ },
+ "Pi": {
+  "description": "Number, approximately 3.14",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9481645226478577
+   }
+  ]
+ },
+ "Piano": {
+  "description": "Keyboard instrument",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.997758150100708
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9916942119598389
+   }
+  ]
+ },
+ "Pizza": {
+  "description": "Italian dish",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9466066956520081
+   }
+  ]
+ },
+ "Pizza theorem": {
+  "description": "Equality of areas of a sliced disk",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9937201142311096
+   }
+  ]
+ },
+ "Platonic solid": {
+  "description": "Any of the five regular polyhedra",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.812877357006073
+   }
+  ]
+ },
+ "Polycube": {
+  "description": "Shape made from cubes joined together",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9019306898117065
+   }
+  ]
+ },
+ "Polyhedron": {
+  "description": "Flat-sided three-dimensional shape",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9496793746948242
+   }
+  ]
+ },
+ "Prime number": {
+  "description": "Number divisible only by 1 and itself",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9706977605819702
+   }
+  ]
+ },
+ "Probability": {
+  "description": "Number measuring the chance an event occurs",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.754925012588501
+   }
+  ]
+ },
+ "Procedural generation": {
+  "description": "Method in which data is created algorithmically as opposed to manually",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9466066956520081
+   },
+   {
+    "bucket": "tech",
+    "score": 0.41490885615348816
+   }
+  ]
+ },
+ "Pythagoras": {
+  "description": "Greek philosopher (c. 570 – c. 495 BC)",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.8596737384796143
+   },
+   {
+    "bucket": "history",
+    "score": 0.8031837940216064
+   }
+  ]
+ },
+ "Pythagorean theorem": {
+  "description": "Relation between sides of a right triangle",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9706977605819702
+   }
+  ]
+ },
+ "Pythagorean tuning": {
+  "description": "Method of tuning a musical instrument",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.982567548751831
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9748311638832092
+   }
+  ]
+ },
+ "Pythagoreanism": {
+  "description": "Philosophical system based on the teachings of Pythagoras",
+  "outlink": []
+ },
+ "Random walk": {
+  "description": "Process forming a path from many random steps",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.8740872144699097
+   }
+  ]
+ },
+ "Random walk hypothesis": {
+  "description": "Financial theory",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9875783920288086
+   }
+  ]
+ },
+ "Reflecting telescope": {
+  "description": "Telescopes which utilize curved mirrors to form an image",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9381340146064758
+   }
+  ]
+ },
+ "Regular polyhedron": {
+  "description": "Polyhedron with regular congruent polygons as faces",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9362950325012207
+   }
+  ]
+ },
+ "Republic of Venice": {
+  "description": "Maritime republic in Italy (697–1797)",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9466066956520081
+   },
+   {
+    "bucket": "history",
+    "score": 0.6224693655967712
+   }
+  ]
+ },
+ "Seven Bridges of Königsberg": {
+  "description": "Classic problem in graph theory",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.6224693655967712
+   }
+  ]
+ },
+ "Sherlock Holmes": {
+  "description": "Fictional character created by Sir Arthur Conan Doyle",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.812877357006073
+   },
+   {
+    "bucket": "language",
+    "score": 0.5312193632125854
+   }
+  ]
+ },
+ "Silk Road": {
+  "description": "Historical network of Eurasian trade routes",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9724247455596924
+   },
+   {
+    "bucket": "history",
+    "score": 0.4301573634147644
+   }
+  ]
+ },
+ "Snow": {
+  "description": "Precipitation in the form of ice crystal flakes",
+  "outlink": []
+ },
+ "Snowflake": {
+  "description": "Ice crystals that fall as snow",
+  "outlink": []
+ },
+ "Soma cube": {
+  "description": "Solid-dissection puzzle",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.6224693655967712
+   }
+  ]
+ },
+ "Stars (M. C. Escher)": {
+  "description": "1948 wood engraving print by M. C. Escher",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.4688006341457367
+   },
+   {
+    "bucket": "art",
+    "score": 0.4532718360424042
+   }
+  ]
+ },
+ "Substitution cipher": {
+  "description": "System to replace plaintext with ciphertext",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9019306898117065
+   },
+   {
+    "bucket": "tech",
+    "score": 0.8596737384796143
+   }
+  ]
+ },
+ "Sudoku": {
+  "description": "Logic-based number-placement puzzle",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.8221991658210754
+   }
+  ]
+ },
+ "Suspension bridge": {
+  "description": "Type of bridge",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.9921941161155701
+   }
+  ]
+ },
+ "Telescope": {
+  "description": "Instrument that makes distant objects appear magnified",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9956784844398499
+   }
+  ]
+ },
+ "Tetris": {
+  "description": "Puzzle video game",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9976133108139038
+   }
+  ]
+ },
+ "Tetromino": {
+  "description": "Four squares connected edge-to-edge",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.59267657995224
+   }
+  ]
+ },
+ "The Adventure of the Dancing Men": {
+  "description": "1905 short story by Arthur Conan Doyle",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.9755869507789612
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9748311638832092
+   }
+  ]
+ },
+ "Topology": {
+  "description": "Branch of mathematics",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9896818399429321
+   }
+  ]
+ },
+ "Tulip mania": {
+  "description": "17th-century economic bubble in the Netherlands",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.7826725244522095
+   }
+  ]
+ },
+ "Venice": {
+  "description": "City in Veneto, Italy",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.8991314172744751
+   }
+  ]
+ },
+ "Victor Vasarely": {
+  "description": "Hungarian-French artist (1906–1997)",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.8175845146179199
+   },
+   {
+    "bucket": "art",
+    "score": 0.7057950496673584
+   }
+  ]
+ },
+ "Tessellation": {
+  "description": "Covering by shapes without overlaps or gaps",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.6442351341247559
+   }
+  ]
+ },
+ "Möbius strip": {
+  "description": "Non-orientable surface with one edge",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.4765896201133728
+   }
+  ]
+ },
+ "Symmetry": {
+  "description": "Mathematical invariance under transformations",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.5698626637458801
+   }
+  ]
+ },
+ "Graph theory": {
+  "description": "Area of discrete mathematics",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.8519628047943115
+   },
+   {
+    "bucket": "tech",
+    "score": 0.4378334879875183
+   }
+  ]
+ },
+ "Cryptography": {
+  "description": "Practice and study of secure communication techniques",
+  "outlink": [
+   {
+    "bucket": "tech",
+    "score": 0.7663036584854126
+   },
+   {
+    "bucket": "math",
+    "score": 0.6370407938957214
+   }
+  ]
+ },
+ "Infinity": {
+  "description": "Mathematical concept",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.9679093360900879
+   }
+  ]
+ },
+ "Magic square": {
+  "description": "Square of numbers with equal row, column and diagonal totals",
+  "outlink": [
+   {
+    "bucket": "math",
+    "score": 0.4921981394290924
+   }
+  ]
+ },
+ "Volcano": {
+  "description": "Rupture in a planet's crust where material escapes",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9899964332580566
+   },
+   {
+    "bucket": "places",
+    "score": 0.9724247455596924
+   }
+  ]
+ },
+ "Rainbow": {
+  "description": "Meteorological phenomenon",
+  "outlink": []
+ },
+ "Coral reef": {
+  "description": "Outcrop of rock in the sea formed by the growth and deposit of stony coral skeletons",
+  "outlink": []
+ },
+ "Aurora": {
+  "description": "Atmospheric effect caused by the solar wind",
+  "outlink": []
+ },
+ "Photosynthesis": {
+  "description": "Biological process to convert light into chemical energy",
+  "outlink": [
+   {
+    "bucket": "science",
+    "score": 0.9763205647468567
+   }
+  ]
+ },
+ "Bicycle": {
+  "description": "Pedal-driven two-wheel vehicle",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.8991314172744751
+   }
+  ]
+ },
+ "Lighthouse": {
+  "description": "Structure designed to emit light to aid navigation",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.8840492963790894
+   }
+  ]
+ },
+ "Steam engine": {
+  "description": "Engine that uses steam to perform mechanical work",
+  "outlink": [
+   {
+    "bucket": "tech",
+    "score": 0.6654205918312073
+   }
+  ]
+ },
+ "Transistor": {
+  "description": "Solid-state electrically operated switch also used as an amplifier",
+  "outlink": [
+   {
+    "bucket": "tech",
+    "score": 0.8267217874526978
+   }
+  ]
+ },
+ "Typewriter": {
+  "description": "Mechanical device for typing characters",
+  "outlink": []
+ },
+ "Rubik's Cube": {
+  "description": "3D combination puzzle",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.585111141204834
+   }
+  ]
+ },
+ "Origami": {
+  "description": "Japanese art of paper folding",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.5000100135803223
+   }
+  ]
+ },
+ "Abacus": {
+  "description": "Calculating tool",
+  "outlink": []
+ },
+ "Slide rule": {
+  "description": "Mechanical analog computer",
+  "outlink": []
+ },
+ "Rock climbing": {
+  "description": "Type of sport",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9697954058647156
+   }
+  ]
+ },
+ "Surfing": {
+  "description": "Sport of riding waves",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.982567548751831
+   }
+  ]
+ },
+ "Marathon": {
+  "description": "Long-distance running event of 42.195 kilometres",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9992306232452393
+   }
+  ]
+ },
+ "Tennis": {
+  "description": "Racket sport",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9993433356285095
+   }
+  ]
+ },
+ "Chess": {
+  "description": "Traditional board game for two players",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9947898983955383
+   }
+  ]
+ },
+ "Sailing": {
+  "description": "Propulsion of a vehicle by wind power",
+  "outlink": [
+   {
+    "bucket": "sports",
+    "score": 0.9450047016143799
+   },
+   {
+    "bucket": "places",
+    "score": 0.4765896201133728
+   }
+  ]
+ },
+ "Jazz": {
+  "description": "Music genre",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9964163899421692
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9919480085372925
+   }
+  ]
+ },
+ "Violin": {
+  "description": "Bowed string instrument",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9908843636512756
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9802908897399902
+   }
+  ]
+ },
+ "Drum kit": {
+  "description": "Musical instrument consisting of a collection of percussion instruments",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9976868629455566
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9899964332580566
+   }
+  ]
+ },
+ "Synthesizer": {
+  "description": "Electronic musical instrument",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9688661694526672
+   },
+   {
+    "bucket": "music",
+    "score": 0.9659096002578735
+   }
+  ]
+ },
+ "Guitar": {
+  "description": "Fretted string instrument",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.9879562258720398
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9740526676177979
+   }
+  ]
+ },
+ "Opera": {
+  "description": "Art form combining sung text and musical score in a theatrical setting",
+  "outlink": [
+   {
+    "bucket": "music",
+    "score": 0.996837317943573
+   },
+   {
+    "bucket": "screen",
+    "score": 0.9916942119598389
+   }
+  ]
+ },
+ "Stained glass": {
+  "description": "Colored glass and works that are made from it",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.8311530351638794
+   }
+  ]
+ },
+ "Mosaic": {
+  "description": "Image made from small colored tiles",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.7371681928634644
+   }
+  ]
+ },
+ "Impressionism": {
+  "description": "19th-century art movement",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.754925012588501
+   }
+  ]
+ },
+ "Fashion design": {
+  "description": "Art of applying design and aesthetics to clothing and accessories",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.9284188151359558
+   }
+  ]
+ },
+ "Quilt": {
+  "description": "Bedcover made of multiple layers of fabric",
+  "outlink": []
+ },
+ "Animation": {
+  "description": "Method of creating moving pictures",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9937201142311096
+   }
+  ]
+ },
+ "Pac-Man": {
+  "description": "1980 video game",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9992059469223022
+   }
+  ]
+ },
+ "Studio Ghibli": {
+  "description": "Japanese animation studio",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.8774868249893188
+   },
+   {
+    "bucket": "art",
+    "score": 0.8080772161483765
+   },
+   {
+    "bucket": "screen",
+    "score": 0.7606606483459473
+   }
+  ]
+ },
+ "Star Trek": {
+  "description": "American science fiction media franchise",
+  "outlink": [
+   {
+    "bucket": "screen",
+    "score": 0.9648651480674744
+   }
+  ]
+ },
+ "Chocolate": {
+  "description": "Food produced from cacao seeds",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9579222798347473
+   }
+  ]
+ },
+ "Coffee": {
+  "description": "Brewed beverage",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.41490885615348816
+   }
+  ]
+ },
+ "Sushi": {
+  "description": "Japanese dish with vinegared rice",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9263137578964233
+   },
+   {
+    "bucket": "places",
+    "score": 0.8354935646057129
+   }
+  ]
+ },
+ "Bread": {
+  "description": "Food made of flour and water",
+  "outlink": [
+   {
+    "bucket": "food",
+    "score": 0.9931061863899231
+   }
+  ]
+ },
+ "Honey": {
+  "description": "Sweet and viscous substance made by bees",
+  "outlink": []
+ },
+ "Ancient Egypt": {
+  "description": "Cradle of civilization in North Africa",
+  "outlink": [
+   {
+    "bucket": "history",
+    "score": 0.9219318628311157
+   }
+  ]
+ },
+ "Printing press": {
+  "description": "Machine for applying ink under pressure",
+  "outlink": []
+ },
+ "Stonehenge": {
+  "description": "Prehistoric monument in England",
+  "outlink": [
+   {
+    "bucket": "history",
+    "score": 0.8311530351638794
+   },
+   {
+    "bucket": "places",
+    "score": 0.7186043858528137
+   }
+  ]
+ },
+ "Renaissance": {
+  "description": "European cultural period of the 14th to 17th centuries",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.44553956389427185
+   }
+  ]
+ },
+ "Iceland": {
+  "description": "Island country in the Atlantic Ocean",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9511522054672241
+   }
+  ]
+ },
+ "Kyoto": {
+  "description": "City in the Kansai region of Japan",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 1.0000100135803223
+   }
+  ]
+ },
+ "Grand Canyon": {
+  "description": "Steep-sided canyon in Arizona, US",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9241518378257751
+   }
+  ]
+ },
+ "Sahara": {
+  "description": "Desert on the African continent",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.9324633479118347
+   }
+  ]
+ },
+ "Antarctica": {
+  "description": "Earth's southernmost continent",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.7981967926025391
+   },
+   {
+    "bucket": "science",
+    "score": 0.7773098945617676
+   }
+  ]
+ },
+ "Alphabet": {
+  "description": "Set of letters used to write a given language",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.9914325475692749
+   }
+  ]
+ },
+ "Haiku": {
+  "description": "Japanese poetry form",
+  "outlink": [
+   {
+    "bucket": "places",
+    "score": 0.7773098945617676
+   },
+   {
+    "bucket": "language",
+    "score": 0.7122421860694885
+   }
+  ]
+ },
+ "Calligraphy": {
+  "description": "Writing as a visual art",
+  "outlink": [
+   {
+    "bucket": "art",
+    "score": 0.59267657995224
+   }
+  ]
+ },
+ "Esperanto": {
+  "description": "Constructed auxiliary language",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.9899964332580566
+   }
+  ]
+ },
+ "Dictionary": {
+  "description": "Collection of words and their meanings",
+  "outlink": [
+   {
+    "bucket": "language",
+    "score": 0.9304682612419128
+   },
+   {
+    "bucket": "tech",
+    "score": 0.8080772161483765
+   }
+  ]
+ },
+ "Stock market": {
+  "description": "Place where stocks are traded",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9984121918678284
+   }
+  ]
+ },
+ "Coca-Cola": {
+  "description": "Cola soft drink",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.4843900501728058
+   }
+  ]
+ },
+ "Money": {
+  "description": "Object or record accepted as payment",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9921941161155701
+   }
+  ]
+ },
+ "IKEA": {
+  "description": "Swedish multinational conglomerate",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.6001983880996704
+   }
+  ]
+ },
+ "Advertising": {
+  "description": "Form of communication for marketing",
+  "outlink": [
+   {
+    "bucket": "business",
+    "score": 0.9263137578964233
+   }
+  ]
+ }
+}

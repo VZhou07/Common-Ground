@@ -1,0 +1,37 @@
+{
+  "note": "Route proposals for makePair. This first pool was proposed by Claude Opus 5.5 working as the coding agent (no API key yet) and is checked by exactly the same checkRoute() as API proposals. Regenerate with: npm run prepare:pairs -- --opus",
+  "pairs": [
+    { "id": "tutorial", "kind": "tutorial", "bucket": "science", "routeLength": 2, "you": "Honey bee", "venn": "Pi",
+      "routes": [ { "you": ["Honey bee", "Honeycomb", "Hexagonal tiling"], "venn": ["Pi", "Hexagon", "Hexagonal tiling"] } ] },
+
+    { "id": "spiral-shell", "kind": "bucket", "bucket": "science", "routeLength": 3, "you": "Octopus", "venn": "Fibonacci sequence",
+      "routes": [ { "you": ["Octopus", "Cephalopod", "Nautilus", "Logarithmic spiral"], "venn": ["Fibonacci sequence", "Golden ratio", "Golden spiral", "Logarithmic spiral"] } ] },
+    { "id": "mirror-curve", "kind": "bucket", "bucket": "tech", "routeLength": 3, "you": "Telescope", "venn": "Pythagorean theorem",
+      "routes": [ { "you": ["Telescope", "Reflecting telescope", "Parabolic reflector", "Parabola"], "venn": ["Pythagorean theorem", "Euclidean geometry", "Archimedes", "Parabola"] } ] },
+    { "id": "seven-bridges", "kind": "bucket", "bucket": "math", "routeLength": 3, "you": "Sudoku", "venn": "Knot theory",
+      "routes": [ { "you": ["Sudoku", "Latin square", "Leonhard Euler", "Seven Bridges of Königsberg"], "venn": ["Knot theory", "Topology", "Eulerian path", "Seven Bridges of Königsberg"] } ] },
+    { "id": "snow-math", "kind": "bucket", "bucket": "sports", "routeLength": 3, "you": "Alpine skiing", "venn": "Chaos theory",
+      "routes": [ { "you": ["Alpine skiing", "Snow", "Snowflake", "Koch snowflake"], "venn": ["Chaos theory", "Mandelbrot set", "Fractal", "Koch snowflake"] } ] },
+    { "id": "perfect-fifth", "kind": "bucket", "bucket": "music", "routeLength": 3, "you": "Piano", "venn": "Pythagorean theorem",
+      "routes": [ { "you": ["Piano", "Interval (music)", "Musical tuning", "Pythagorean tuning"], "venn": ["Pythagorean theorem", "Pythagoreanism", "Pythagoras", "Pythagorean tuning"] } ] },
+    { "id": "impossible-art", "kind": "bucket", "bucket": "art", "routeLength": 3, "you": "Bauhaus", "venn": "Topology",
+      "routes": [ { "you": ["Bauhaus", "Victor Vasarely", "Op art", "M. C. Escher"], "venn": ["Topology", "Polyhedron", "Stars (M. C. Escher)", "M. C. Escher"] } ] },
+    { "id": "falling-blocks", "kind": "bucket", "bucket": "screen", "routeLength": 3, "you": "Tetris", "venn": "Platonic solid",
+      "routes": [ { "you": ["Tetris", "Tetromino", "Polycube", "Soma cube"], "venn": ["Platonic solid", "Regular polyhedron", "Cube", "Soma cube"] } ] },
+    { "id": "fair-slice", "kind": "bucket", "bucket": "food", "routeLength": 3, "you": "Cheese", "venn": "Probability",
+      "routes": [ { "you": ["Cheese", "Mozzarella", "Pizza", "Pizza theorem"], "venn": ["Probability", "Game theory", "Fair division", "Pizza theorem"] } ] },
+    { "id": "measure-earth", "kind": "bucket", "bucket": "history", "routeLength": 3, "you": "Silk Road", "venn": "Prime number",
+      "routes": [ { "you": ["Silk Road", "Alexandria", "Library of Alexandria", "Eratosthenes"], "venn": ["Prime number", "Euclid", "Archimedes", "Eratosthenes"] } ] },
+    { "id": "lagoon-lens", "kind": "bucket", "bucket": "places", "routeLength": 3, "you": "Venice", "venn": "Euclidean geometry",
+      "routes": [ { "you": ["Venice", "Republic of Venice", "Padua", "Galileo Galilei"], "venn": ["Euclidean geometry", "Euclid", "Archimedes", "Galileo Galilei"] } ] },
+    { "id": "dancing-men", "kind": "bucket", "bucket": "language", "routeLength": 3, "you": "Sherlock Holmes", "venn": "Normal distribution",
+      "routes": [ { "you": ["Sherlock Holmes", "The Adventure of the Dancing Men", "Substitution cipher", "Frequency analysis"], "venn": ["Normal distribution", "Cumulative frequency analysis", "Frequency (statistics)", "Frequency analysis"] } ] },
+    { "id": "random-tulips", "kind": "bucket", "bucket": "business", "routeLength": 3, "you": "Tulip mania", "venn": "Probability",
+      "routes": [ { "you": ["Tulip mania", "A Random Walk Down Wall Street", "Efficient-market hypothesis", "Random walk hypothesis"], "venn": ["Probability", "Markov chain", "Random walk", "Random walk hypothesis"] } ] },
+
+    { "id": "daily-mon", "kind": "daily", "weekday": 1, "bucket": "tech", "routeLength": 2, "you": "Suspension bridge", "venn": "Platonic solid",
+      "routes": [ { "you": ["Suspension bridge", "Parabola", "Conic section"], "venn": ["Platonic solid", "Johannes Kepler", "Conic section"] } ] },
+    { "id": "daily-tue", "kind": "daily", "weekday": 2, "bucket": "screen", "routeLength": 2, "you": "Minecraft", "venn": "Logarithm",
+      "routes": [ { "you": ["Minecraft", "Procedural generation", "Fractal landscape"], "venn": ["Logarithm", "Fractal", "Fractal landscape"] } ] }
+  ]
+}
