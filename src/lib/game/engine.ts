@@ -159,20 +159,18 @@ export async function move(o: { token: string; move: string; profile: Profile })
     steppedBack,
   };
   const fallback = reactionLine(facts);
-  const line = await voiceLine(facts, fallback.line, p);
-
-  let end: EndReport | null = null;
-  if (meeting) {
-    state.status = "met";
-    const done = await finish(state, pair, profile, yourNext);
-    profile = done.profile;
-    end = done.report;
-  }
-  let next: { you: ArticleView; venn: VennView; meter: MeterView } | null = null;
-  if (!meeting) {
-    const np = await look(state, pair);
-    next = { you: articleView(np.you.article, np.you.top, state.stack), venn: vennView(np), meter: meterView(np) };
-  }
+  if (meeting) state.status = "met";
+  // Independent of each other, so the reveal waits for the slowest, not the sum.
+  const [line, done, np] = await Promise.all([
+    voiceLine(facts, fallback.line, p),
+    meeting ? finish(state, pair, profile, yourNext) : null,
+    meeting ? null : look(state, pair),
+  ]);
+  if (done) profile = done.profile;
+  const end: EndReport | null = done?.report ?? null;
+  const next: { you: ArticleView; venn: VennView; meter: MeterView } | null = np
+    ? { you: articleView(np.you.article, np.you.top, state.stack), venn: vennView(np), meter: meterView(np) }
+    : null;
   return {
     token: encrypt(state), reveal, met: meeting, gaveUp: false,
     turn: { you: yourNext, venn: vennNext, c: c2, dc, verdict: v, stance: pending.stance, read: pending.read.bucket ? bucketLabel(pending.read.bucket) : null, readRight, intent: pending.intent ? bucketLabel(pending.intent) : null },
