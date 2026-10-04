@@ -6,9 +6,9 @@ A cooperative Wikipedia game you play with Venn, an AI partner. You start on dif
 
 ## How to play
 
-1. **Tell Venn what you're into.** Type something short, like "skiing" or "jazz" (up to 30 characters). Venn turns it into one or two topics, which decide where Unlimited games start. Venn itself likes math, so it starts on a math page.
+1. **Tell Venn what you're into.** Type something short, like "skiing" or "jazz" (up to 30 characters). Venn turns it into one or two topics, and your first Unlimited game after the tutorial starts in one of them. Venn itself likes math, so it starts on a math page.
 2. **Pick how much Venn hints.** Easy names the topic Venn is heading into, Normal hints at its plan, and Hard says nothing.
-3. **Pick a game.** Daily is one numbered pair for everyone, playable once a day. Unlimited starts you near your interest. Your first game is a short tutorial.
+3. **Pick a game.** Daily is one numbered pair for everyone, playable once a day. Unlimited starts in your topic the first time. After that, each game starts somewhere new until you've seen all twelve starts, leaning toward what you said and where you actually go, so Venn learns more about how you play. Your very first game is a short tutorial.
 4. **Each turn, click a link in your article, then press Seal my move.** Press Ctrl+F (⌘F on a Mac), or the **Find a link** button, to search your article's links by name or description. Venn seals its own move before you do; the button reads "Venn is still deciding…" until it has. Both moves are revealed together.
 5. **Meet Venn** by landing on the same page on the same turn.
 

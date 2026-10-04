@@ -128,7 +128,7 @@ export function Setup() {
             <label key={m}><input type="radio" name="mode" checked={settings.mode === m} onChange={() => setSettings({ ...settings, mode: m })} /><span>{m === "daily" ? "Daily" : "Unlimited"}</span></label>
           ))}
         </div>
-        <p className="hint-line">{settings.mode === "daily" ? (dailyDone ? `Today's daily is done: ${dailyDone}.` : "One pair for everyone today.") : "Your interest picks where you start."}</p>
+        <p className="hint-line">{settings.mode === "daily" ? (dailyDone ? `Today's daily is done: ${dailyDone}.` : "One pair for everyone today.") : "We start in your topic, then I take you somewhere new each game to learn how you play."}</p>
       </fieldset>
 
       {error && <p className="error" role="alert">{error}</p>}

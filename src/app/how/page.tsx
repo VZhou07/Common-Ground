@@ -77,7 +77,7 @@ export default function HowToPlay() {
           <thead><tr><th>Your moves</th><th>Label</th></tr></thead>
           <tbody>{LABELS.map(([moves, label]) => <tr key={label}><td>{moves}</td><td>{label}</td></tr>)}</tbody>
         </table>
-        <p><strong>Daily</strong> is one numbered pair for everyone, once a day; its route is 2 to 4 moves depending on the weekday. <strong>Unlimited</strong> starts you near what you said you&apos;re into. Your first game is a short tutorial.</p>
+        <p><strong>Daily</strong> is one numbered pair for everyone, once a day; its route is 2 to 4 moves depending on the weekday. <strong>Unlimited</strong> starts in your topic the first time. After that, each game starts somewhere new until you&apos;ve seen all twelve starts, leaning toward what you said and where you actually go, so I learn more about how you play. Your very first game is a short tutorial.</p>
       </section>
 
       <Link className="btn" href="/" style={{ textDecoration: "none", display: "inline-block" }}>Let&apos;s play</Link>
