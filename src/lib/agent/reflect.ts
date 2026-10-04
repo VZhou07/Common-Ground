@@ -129,6 +129,8 @@ export async function consolidate(profile: Profile, state: GameState, pair: Pair
         maxOutputTokens: 400,
         maxRetries: 0,
         abortSignal: AbortSignal.timeout(4000),
+        // A forced JSON tool works on every Claude model, native formats or not.
+        providerOptions: { anthropic: { structuredOutputMode: "jsonTool" } },
       });
       recordUsage(model, result.usage);
       // ★ CORE-CHECK-5: chosen by candidate ID only; the phrasing is display

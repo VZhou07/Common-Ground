@@ -115,6 +115,10 @@ export async function deliberate(i: DeliberationInput): Promise<Checked> {
       providerOptions: { anthropic: { effort: "low" } },
     });
     recordUsage(model, result.totalUsage ?? result.usage);
+    // The SDK refuses tool input that doesn't match the schema; report that
+    // as a schema failure rather than "no decision".
+    const parts = result.steps.flatMap(s => s.content as { type: string; toolName?: string }[]);
+    if (!decision && parts.some(c => c.type === "tool-error" && c.toolName === "decide")) return { ok: false, failure: "schema", recalled };
   } catch (error) {
     return { ok: false, failure: error instanceof Error && /abort|timeout/i.test(error.message + error.name) ? "timeout" : "api error", recalled };
   }
