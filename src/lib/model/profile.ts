@@ -38,6 +38,7 @@ export type MemoryItem = {
 export type GameRecord = {
   pair: string; bucket: BucketId; mode: "daily" | "unlimited"; difficulty: "easy" | "normal" | "hard";
   moves: number; routeLength: number; met: boolean; label: string; meet: string | null; day: string;
+  meetBucket?: BucketId | null; // the meeting page's top bucket, live pages included; null if sensitive
   turns: { bucket: BucketId | null; verdict: "converged" | "diverged" | "neutral" }[];
 };
 
@@ -121,6 +122,7 @@ export const profileSchema = z.object({
   history: z.array(z.object({
     pair: z.string().max(60), bucket, mode: z.enum(["daily", "unlimited"]), difficulty: z.enum(["easy", "normal", "hard"]),
     moves: int(0, 1000), routeLength: int(1, 10), met: z.boolean(), label: z.string().max(40), meet: title.nullable(), day: z.string().max(10),
+    meetBucket: bucket.nullable().optional(),
     turns: z.array(z.object({ bucket: bucket.nullable(), verdict }).strict()).max(200),
   }).strict()).max(MAX_HISTORY),
   bests: z.partialRecord(bucket, num(0, 1000)),

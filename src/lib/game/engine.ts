@@ -110,7 +110,8 @@ export async function move(o: { token: string; move: string; profile: Profile })
   if (!gaveUp && chosen < 0) throw new Error("That link isn't playable from here.");
   const vennNext = pending.move;
   const reveal = { move: vennNext, nonce: pending.nonce, commitment: pending.commitment };
-  let profile = o.profile;
+  // The interest this game started with is the profile's stated prior.
+  let profile: Profile = { ...o.profile, interest: { ...o.profile.interest, stated: state.stated } };
 
   if (gaveUp) {
     state.status = "gave_up";
@@ -203,7 +204,8 @@ async function finish(state: GameState, pair: Pair, profile: Profile, meetAt: st
     bests: isNew ? { ...profile.bests, [pair.bucket]: ratio } : profile.bests,
     history: [...profile.history, {
       pair: pair.id, bucket: pair.bucket, mode: state.mode, difficulty: state.difficulty, moves, routeLength: pair.routeLength,
-      met: metNow, label: lab, meet: meetAt, day: state.day, turns: state.turns.map(t => ({ bucket: t.bucket, verdict: t.verdict })),
+      met: metNow, label: lab, meet: meetAt, meetBucket: metNow ? state.turns.at(-1)?.yourBucket ?? null : null, day: state.day,
+      turns: state.turns.map(t => ({ bucket: t.bucket, verdict: t.verdict })),
     }].slice(-MAX_HISTORY),
   };
   const memory = await consolidate(next, state, pair);

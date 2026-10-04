@@ -64,6 +64,10 @@ test("a new player gets the tutorial, plays it end to end, and the profile learn
   assert.equal(out.profile.history.length, 1);
   assert.ok(out.profile.predictor.turns >= 1);
   assert.ok(out.profile.interest.counts.some(c => c > 0));
+  // What you said at setup is saved as the stated side of stated vs revealed.
+  assert.deepEqual(out.profile.interest.stated, ["sports"]);
+  assert.deepEqual(end.statedVsRevealed.stated, ["sports"]);
+  assert.ok(out.profile.history[0].meetBucket, "the meeting page's bucket is recorded for conventions");
 });
 
 test("after the tutorial, Unlimited picks a pair in your stated bucket", async () => {

@@ -7,7 +7,7 @@ import { withDeadline } from "../deadline";
 import { BUCKET_IDS, bucketLabel, isBucket, type BucketId } from "../topics/buckets";
 import { topicTags } from "../wiki/repository";
 import { anthropic, llmEnabled, MODELS, recordUsage } from "../llm";
-import { FEATURES, MAX_MEMORY, THETA_POP, type MemoryItem, type MemoryType, type Profile } from "../model/profile";
+import { FEATURES, MAX_MEMORY, THETA_POP, type GameRecord, type MemoryItem, type MemoryType, type Profile } from "../model/profile";
 import { reliability } from "../model/reliability";
 import { newMemoryId, render } from "../context/memory";
 import { checkLine } from "../voice/check";
@@ -56,14 +56,19 @@ export function candidates(profile: Profile, state: GameState, pair: Pair): { pr
   }
 
   // ★ CORE-CTX-9: consolidation. Repeated meetings become a convention...
+  // Records from before meetBucket existed fall back to the pinned tags.
+  const meetBucketOf = (h: GameRecord): BucketId | null =>
+    !h.met || !h.meet ? null : h.meetBucket !== undefined ? h.meetBucket : topicTags()[h.meet]?.outlink[0]?.bucket ?? null;
   const meetings = new Map<BucketId, number>();
   for (const h of profile.history) {
-    if (!h.met || !h.meet) continue;
-    const b = topicTags()[h.meet]?.outlink[0]?.bucket;
+    const b = meetBucketOf(h);
     if (b && isBucket(b)) meetings.set(b, (meetings.get(b) ?? 0) + 1);
   }
+  const last = profile.history.at(-1);
+  const metIn = last ? meetBucketOf(last) : null;
   for (const [b, count] of meetings) {
-    if (count < CONVENTION_MIN) continue;
+    // Only this game's meeting is new evidence; older ones were counted already.
+    if (count < CONVENTION_MIN || b !== metIn) continue;
     add({ ...base, key: `convention:meet:${b}`, type: "convention", buckets: [b], situation: Array(24).fill(0), scope: "any", data: { kind: "convention", bucket: b, count } },
       old => ({ ...old, data: { kind: "convention", bucket: b, count }, evidence: { ...old.evidence, confirm: old.evidence.confirm + 1 } }));
   }
@@ -91,6 +96,8 @@ export function candidates(profile: Profile, state: GameState, pair: Pair): { pr
   BUCKET_IDS.forEach((b, k) => {
     const a = profile.ability.a[k], n = profile.ability.n[k];
     if (n < 5 || Math.abs(a) < 0.4) return;
+    const prev = memory.find(m => m.key === `topicStat:you:${b}`)?.data;
+    if (prev?.kind === "topicStat" && prev.n === n) return; // no turns in this bucket this game
     add({ ...base, key: `topicStat:you:${b}`, type: "topicStat", buckets: [b], situation: Array(24).fill(0), scope: "any", data: { kind: "topicStat", who: "you", bucket: b, ability: a, n } },
       old => ({ ...old, data: { kind: "topicStat", who: "you", bucket: b, ability: a, n } }));
   });
