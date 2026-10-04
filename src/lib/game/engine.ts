@@ -21,7 +21,10 @@ import type { GameState, TurnRecord, Verdict } from "./state";
 
 export const CALLOUT = "There's a page you both link to. Can you find it?";
 
-export type ArticleView = { title: string; description: string; html: string; tags: string[]; source: string; canStepBack: boolean; back: string | null };
+export type ArticleView = {
+  title: string; description: string; html: string; tags: string[]; source: string; canStepBack: boolean; back: string | null;
+  links: { title: string; description: string; section: string }[]; // the playable links, for the link search
+};
 export type VennView = { title: string; description: string; tags: string[] };
 export type MeterView = { c: number; shared: boolean; callout: string | null };
 
@@ -29,7 +32,8 @@ const tagsOf = (top: BucketId[]) => top.slice(0, 2).map(bucketLabel);
 
 function articleView(a: Article, top: BucketId[], stack: string[]): ArticleView {
   const back = stepBackTarget(stack);
-  return { title: a.title, description: a.description, html: a.html, tags: tagsOf(top), source: a.source, canStepBack: back !== null, back };
+  const links = a.links.filter(l => l.policy !== "blocked").map(({ title, description, section }) => ({ title, description, section }));
+  return { title: a.title, description: a.description, html: a.html, tags: tagsOf(top), source: a.source, canStepBack: back !== null, back, links };
 }
 const vennView = (p: Perception): VennView => ({ title: p.venn.article.title, description: p.venn.article.description, tags: tagsOf(p.venn.top) });
 // ★ CORE-CLOSE-8: the callout appears only when a shared playable link

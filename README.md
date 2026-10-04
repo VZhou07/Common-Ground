@@ -2,15 +2,17 @@
 
 A cooperative Wikipedia game you play with Venn, an AI partner. You start on different Wikipedia pages, each secretly pick one link per turn, and try to land on the same page on the same turn. Venn learns how you play, game after game.
 
-**Live demo:** [common-ground-kohl.vercel.app]
+**Live demo:** [common-ground-kohl.vercel.app](https://common-ground-kohl.vercel.app)
 
 ## How to play
 
 1. **Tell Venn what you're into.** Type something short, like "skiing" or "jazz" (up to 30 characters). Venn turns it into one or two topics, which decide where Unlimited games start. Venn itself likes math, so it starts on a math page.
 2. **Pick how much Venn hints.** Easy names the topic Venn is heading into, Normal hints at its plan, and Hard says nothing.
 3. **Pick a game.** Daily is one numbered pair for everyone, playable once a day. Unlimited starts you near your interest. Your first game is a short tutorial.
-4. **Each turn, click a link in your article, then press Seal my move.** Venn seals its own move before you do; the button reads "Venn is still deciding…" until it has. Both moves are revealed together.
+4. **Each turn, click a link in your article, then press Seal my move.** Press Ctrl+F (⌘F on a Mac), or the **Find a link** button, to search your article's links by name or description. Venn seals its own move before you do; the button reads "Venn is still deciding…" until it has. Both moves are revealed together.
 5. **Meet Venn** by landing on the same page on the same turn.
+
+The in-game [How to play](https://common-ground-kohl.vercel.app/how) page explains how Venn plays, how to read its hints, and some tips.
 
 You never see Venn's links, only its page, a one-line description, two topic tags and its hint. The closeness meter runs from Cold to Hot. "There's a page you both link to. Can you find it?" appears only when you could meet this turn.
 

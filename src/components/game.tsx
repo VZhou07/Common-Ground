@@ -11,6 +11,7 @@ import { VennCard } from "./venn-card";
 import { ClosenessMeter } from "./closeness-meter";
 import { Reveal, type RevealData } from "./reveal";
 import { EndReport } from "./end-report";
+import { LinkSearch } from "./link-search";
 
 type Start = Awaited<ReturnType<typeof startGame>>;
 type Think = Awaited<ReturnType<typeof thinkFn>>;
@@ -34,6 +35,7 @@ export function Game() {
   const [reveal, setReveal] = useState<RevealData | null>(null);
   const [end, setEnd] = useState<Report | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [searching, setSearching] = useState(false);
   const token = useRef<string>("");
   const profile = useRef<Profile>(freshProfile());
   const thinking = useRef(0);
@@ -85,6 +87,27 @@ export function Game() {
     return () => { ++starts.current; ++thinks.current; };
   }, [start]);
 
+  // Ctrl+F (⌘F) opens the link search while you're choosing a move. With the
+  // search already open the listener is gone, so it reaches the browser's find.
+  const playing = !!you && !end;
+  useEffect(() => {
+    if (!playing || searching) return;
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && !e.altKey && !e.shiftKey && e.key.toLowerCase() === "f") {
+        e.preventDefault();
+        setSearching(true);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [playing, searching]);
+
+  function pickFromSearch(title: string) {
+    setSelected(title);
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    requestAnimationFrame(() => document.querySelector(`.prose a[data-title="${CSS.escape(title)}"]`)?.scrollIntoView({ block: "center", behavior }));
+  }
+
   async function send(move: string) {
     if (!commitment || busy) return;
     setBusy(true); setError(null);
@@ -129,7 +152,8 @@ export function Game() {
       {end ? <EndReport report={end} onAgain={() => router.push("/")} /> : (
         <div className="play">
           <div>
-            <Reader {...you} selected={selected} disabled={busy} onSelect={setSelected} />
+            <Reader {...you} selected={selected} disabled={busy} onSelect={setSelected} onSearch={() => setSearching(true)} />
+            {searching && playing && <LinkSearch links={you.links} disabled={busy} onClose={() => setSearching(false)} onPick={pickFromSearch} />}
             <div className="movebar">
               <span className="selected-label">{selected ? <>Your move: <strong>{selected}</strong></> : <span className="muted">{game.tutorial && !reveal ? "Pick a link that might lead toward Venn's page. You both move at once." : "Pick a link in your article."}</span>}</span>
               <span className="actions">

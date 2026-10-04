@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Masthead } from "./masthead";
 import { api, loadDailyDone, loadInterest, loadProfile, loadSettings, localDay, saveInterest, saveSettings, type Interest, type Settings } from "@/lib/client/store";
 import { statedVsRevealed } from "@/lib/model/interest";
@@ -95,6 +96,7 @@ export function Setup() {
           We start on two different Wikipedia pages. Each turn we both pick one link in our own article, sealed, then revealed together.
           Land on the same page on the same turn and we&apos;ve met. You&apos;ll see my page and a hint, never my links, so you&apos;ll have to read me.
         </p>
+        <p style={{ margin: "0.5rem 0 0" }}><Link href="/how">How I play, and a few tips →</Link></p>
       </div>
       {still && <p className="card" style={{ marginBottom: "1rem" }}>{still}</p>}
 

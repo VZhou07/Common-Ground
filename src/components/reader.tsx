@@ -1,12 +1,13 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { findKey } from "./link-search";
 
 // The article as an editorial reader. Every playable link is clickable and
 // nothing is highlighted: finding the common ground is the game. The HTML was
 // sanitized and every anchor rebuilt on the server (parse.ts).
 export function Reader(props: {
   title: string; description: string; html: string; tags: string[]; source: string;
-  selected: string | null; disabled: boolean; onSelect: (title: string) => void;
+  selected: string | null; disabled: boolean; onSelect: (title: string) => void; onSearch?: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { onSelect, disabled, selected } = props;
@@ -42,7 +43,10 @@ export function Reader(props: {
           {props.description && <p className="reader-desc">{props.description}</p>}
           <div className="chips">{props.tags.map(t => <span key={t} className="chip">{t}</span>)}</div>
         </div>
-        <a className="faint" href={props.source} target="_blank" rel="noreferrer noopener">Wikipedia ↗</a>
+        <div className="reader-tools">
+          {props.onSearch && <button className="btn secondary small" onClick={props.onSearch}>Find a link <kbd>{findKey()}</kbd></button>}
+          <a className="faint" href={props.source} target="_blank" rel="noreferrer noopener">Wikipedia ↗</a>
+        </div>
       </div>
       <div ref={ref} className="prose" dangerouslySetInnerHTML={{ __html: props.html }} />
     </article>

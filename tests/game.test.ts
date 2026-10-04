@@ -76,6 +76,13 @@ test("after the tutorial, Unlimited picks a pair in your stated bucket", async (
   assert.equal(pairById(decrypt<GameState>(s.token).pair)!.bucket, "sports");
 });
 
+test("the article view lists exactly the playable links, for the link search", async () => {
+  const s = await startGame({ mode: "unlimited", difficulty: "normal", profile: { ...freshProfile(), tutorialDone: true }, stated: ["sports"] });
+  const article = await getArticle(s.you.title);
+  assert.deepEqual(s.you.links.map(l => l.title), article.links.filter(l => l.policy !== "blocked").map(l => l.title));
+  assert.ok(s.you.links.every(l => typeof l.description === "string" && l.section.length > 0));
+});
+
 test("the shared-link callout appears exactly when a shared playable link exists", async () => {
   const profile = { ...freshProfile(), tutorialDone: true };
   for (const stated of [["sports"], ["food"], ["music"]] as const) {
