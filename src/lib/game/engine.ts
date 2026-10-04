@@ -2,7 +2,7 @@
 // facts; the LLM (when on) only judges inside decide() and voices lines.
 import { randomBytes } from "node:crypto";
 import { bucketLabel, BUCKET_IDS, type BucketId } from "../topics/buckets";
-import { TAU, verdict as judge, nextDrift } from "../closeness/closeness";
+import { TAU, verdict as judge, nextDrift, yourShare } from "../closeness/closeness";
 import { perceive, type Perception } from "../agent/perceive";
 import { decideTurn } from "../agent/think";
 import { learnFromMove } from "../agent/learn";
@@ -123,7 +123,7 @@ export async function move(o: { token: string; move: string; profile: Profile })
   const x = p.vennOptions.find(v => v.title === vennNext)!;
   const c2 = p.cfn(y.vector, x.vector);
   const dc = c2 - p.c;
-  const yourGain = p.gains[chosen];
+  const yourGain = yourShare(p.cfn, p.you.vector, y.vector, p.venn.vector, x.vector);
   const v = judge(yourGain, p.difficulty.convergingExists);
   const driftBefore = state.drift;
   state.drift = nextDrift(state.drift, dc);

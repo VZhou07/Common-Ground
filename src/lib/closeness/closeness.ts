@@ -83,12 +83,20 @@ export function turnDifficulty(gains: OptionGain[]): { b: number; convergingExis
 
 export type MoveVerdict = "converged" | "diverged" | "neutral";
 
-// ★ CORE-CLOSE-6: your move is judged by your own contribution (gain toward
-// Venn's page), so Venn's move can't make you look bad. "Diverged" requires
-// that a converging option existed: no blame on impossible turns.
-export function verdict(chosenGain: number, convergingExists: boolean): MoveVerdict {
-  if (chosenGain > TAU) return "converged";
-  if (chosenGain < -TAU && convergingExists) return "diverged";
+// ★ CORE-CLOSE-6: your share of Δc. You both moved at once, so your step is
+// measured against Venn's page before and after its move, averaged: the
+// Shapley split of Δc between two movers (your share + Venn's = Δc exactly).
+// Venn's move can't make you look bad, and stepping toward where Venn
+// actually went counts.
+export function yourShare(c: Calibrated, you: Float32Array, next: Float32Array, vennBefore: Float32Array, vennAfter: Float32Array): number {
+  return 0.5 * ((c(next, vennBefore) - c(you, vennBefore)) + (c(next, vennAfter) - c(you, vennAfter)));
+}
+
+// "Diverged" requires that a converging option existed: no blame on
+// impossible turns.
+export function verdict(share: number, convergingExists: boolean): MoveVerdict {
+  if (share > TAU) return "converged";
+  if (share < -TAU && convergingExists) return "diverged";
   return "neutral";
 }
 

@@ -16,7 +16,7 @@ const THEORY_TEXT: Record<Feature, [string, string]> = {
   shared: ["You spot the links we share.", "You walk past the links we share."],
   back: ["You step back when you feel lost.", "You almost never step back."],
 };
-const OUTCOME = { converged: "and we got closer", diverged: "and we drifted apart", met: "and we met" } as const;
+const OUTCOME = { converged: "a step toward me", diverged: "a step away from me", met: "and we met there" } as const;
 
 // ★ CORE-CTX-3: the only way memory becomes text: fixed templates over
 // structured fields. This is what the LLM sees and what the UI shows.
