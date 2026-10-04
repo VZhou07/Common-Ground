@@ -99,7 +99,7 @@ export function Game() {
       if (r.gaveUp) {
         setReveal({ turn: (reveal?.turn ?? 0) + 1, you: "(gave up)", venn: r.reveal.move, met: false, gaveUp: true, verdict: "neutral", line: r.line, verified, read: null, readRight: false, considered: r.considered });
       } else if (r.turn) {
-        setReveal({ turn: (reveal?.turn ?? 0) + 1, you: r.turn.you, venn: r.turn.venn, met: r.met, verdict: r.turn.verdict, line: r.line, verified, read: r.turn.read, readRight: r.turn.readRight, considered: r.considered });
+        setReveal({ turn: (reveal?.turn ?? 0) + 1, you: r.turn.you, venn: r.turn.venn, met: r.met, verdict: r.turn.verdict, dc: r.turn.dc, line: r.line, verified, read: r.turn.read, readRight: r.turn.readRight, considered: r.considered });
         setDc(r.turn.dc);
       }
       if (r.end) {

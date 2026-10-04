@@ -5,10 +5,16 @@ import { ConsideredPanel } from "./considered-panel";
 
 export type RevealData = {
   turn: number; you: string; venn: string; met: boolean; gaveUp?: boolean; verdict: "converged" | "diverged" | "neutral";
-  line: string; verified: boolean | null; read: string | null; readRight: boolean; considered: Considered;
+  dc?: number; line: string; verified: boolean | null; read: string | null; readRight: boolean; considered: Considered;
 };
 
-const VERDICT = { converged: "You moved toward Venn", diverged: "You moved away from Venn", neutral: "Neither closer nor further" };
+// The verdict is your share of the change; the meter shows both moves.
+const verdictText = (v: RevealData["verdict"], dc = 0) =>
+  v === "converged" ? "Your step brought us closer"
+  : v === "diverged" ? "Your step took us further apart"
+  : dc > 0.05 ? "Your step was neutral; Venn closed the gap"
+  : dc < -0.05 ? "Your step was neutral; Venn moved away"
+  : "Neither of us got closer";
 
 export function Reveal({ r }: { r: RevealData }) {
   const reduce = useReducedMotion();
@@ -22,7 +28,7 @@ export function Reveal({ r }: { r: RevealData }) {
       </div>
       <p className="venn-line">“{r.line}”</p>
       <p style={{ margin: 0, display: "flex", gap: "0.8rem", flexWrap: "wrap", alignItems: "baseline" }}>
-        {!r.met && !r.gaveUp && <span className={`verdict ${r.verdict}`}>{VERDICT[r.verdict]}</span>}
+        {!r.met && !r.gaveUp && <span className={`verdict ${r.verdict}`}>{verdictText(r.verdict, r.dc)}</span>}
         {r.read && <span className="faint">Venn read: {r.read} {r.readRight ? "✓" : "✗"}</span>}
         <span className="verified">{r.verified === null ? "" : r.verified ? "✓ Venn's sealed move matches its commitment" : "⚠ Commitment mismatch"}</span>
       </p>

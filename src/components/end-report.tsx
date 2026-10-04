@@ -62,7 +62,7 @@ export function EndReport({ report, onAgain }: { report: Report; onAgain: () => 
         <div className="card">
           <p className="kicker">How close we were</p>
           <Chart points={report.chart} />
-          <p className="faint" style={{ margin: 0 }}>Green: you moved toward Venn. Red: away, when a closer link existed. Grey: neither.</p>
+          <p className="faint" style={{ margin: 0 }}>The line is both of us. Dots are your step: green brought us closer, red took us apart when a closer link existed, grey was neutral.</p>
         </div>
         <div className="card">
           <p className="kicker">Venn&apos;s known route</p>
