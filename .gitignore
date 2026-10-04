@@ -5,4 +5,5 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+.cache
 .DS_Store
