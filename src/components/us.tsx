@@ -14,7 +14,7 @@ function describe(m: Profile["memory"][number]): string {
   const d = m.data;
   if (d.kind === "convention") return `We usually meet through ${bucketLabel(d.bucket)} (${d.count} meetings).`;
   if (d.kind === "topicStat") return `${bucketLabel(d.bucket)}: ${d.ability >= 0 ? "we click" : "we lose each other"} (ability ${d.ability >= 0 ? "+" : ""}${d.ability.toFixed(1)}, n=${d.n}).`;
-  if (d.kind === "episode") return `Turn ${d.turn} on ${d.pair}: you went to ${d.to} from ${d.from}.`;
+  if (d.kind === "episode") return `Turn ${d.turn}: you went to ${d.to} from ${d.from}.`;
   const text: Record<string, [string, string]> = {
     gain: ["You head straight for my page when you can see a way.", "You wander away from my page before coming back."],
     interest: ["You follow your own interests more than my hints.", "You set your own interests aside to find me."],

@@ -23,7 +23,7 @@ const OUTCOME = { converged: "a step toward me", diverged: "a step away from me"
 export function render(m: MemoryItem): string {
   const d = m.data;
   switch (d.kind) {
-    case "episode": return `Turn ${d.turn} on ${d.pair}: you went to ${d.to} from ${d.from}, ${OUTCOME[d.outcome]}.`;
+    case "episode": return `Turn ${d.turn}: you went to ${d.to} from ${d.from}, ${OUTCOME[d.outcome]}.`;
     case "theory": return THEORY_TEXT[d.feature][d.delta >= 0 ? 0 : 1];
     case "convention": return `We usually meet through ${bucketLabel(d.bucket)} (${d.count} meetings).`;
     case "topicStat": return `${bucketLabel(d.bucket)}: ${d.ability >= 0 ? "we click" : "we lose each other"} (ability ${d.ability >= 0 ? "+" : ""}${d.ability.toFixed(1)}, n=${d.n}).`;
