@@ -44,7 +44,6 @@ export function Setup() {
     if (i) {
       setText(i.text);
       setChips(i.buckets);
-      mapped.current = { text: i.text, buckets: i.buckets as Chip[] };
       latest.current = i.text;
       // Venn occasionally checks in: every few games, and with a nudge when
       // where you go has drifted from what you said.
@@ -90,6 +89,13 @@ export function Setup() {
       <Masthead />
       <p className="venn-badge"><span className="venn-dot" aria-hidden /> Venn</p>
       <p className="venn-says">I&apos;m Venn. I like math and anything that smells like it. What about you?</p>
+      <div className="card" style={{ marginBottom: "1rem" }}>
+        <p className="kicker">How we play</p>
+        <p className="muted" style={{ margin: 0 }}>
+          We start on two different Wikipedia pages. Each turn we both pick one link in our own article, sealed, then revealed together.
+          Land on the same page on the same turn and we&apos;ve met. You&apos;ll see my page and a hint, never my links, so you&apos;ll have to read me.
+        </p>
+      </div>
       {still && <p className="card" style={{ marginBottom: "1rem" }}>{still}</p>}
 
       <div className="field">

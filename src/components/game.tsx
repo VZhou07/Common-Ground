@@ -131,7 +131,7 @@ export function Game() {
           <div>
             <Reader {...you} selected={selected} disabled={busy} onSelect={setSelected} />
             <div className="movebar">
-              <span className="selected-label">{selected ? <>Your move: <strong>{selected}</strong></> : <span className="muted">Pick a link in your article.</span>}</span>
+              <span className="selected-label">{selected ? <>Your move: <strong>{selected}</strong></> : <span className="muted">{game.tutorial && !reveal ? "Pick a link that might lead toward Venn's page. You both move at once." : "Pick a link in your article."}</span>}</span>
               <span className="actions">
                 <button className="btn quiet" disabled={!you.canStepBack || !commitment || busy} onClick={() => void send(STEP_BACK)} title={you.back ? `Back to ${you.back}` : "Nothing to go back to yet"}>Step back</button>
                 <button className="btn quiet" disabled={!commitment || busy} onClick={() => { if (confirm("Give up this game?")) void send(GIVE_UP); }}>Give up</button>
