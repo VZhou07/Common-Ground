@@ -67,4 +67,7 @@ test("interest text maps to 1-2 buckets; sensitive or unmappable text maps to no
   assert.deepEqual(await interestBuckets("my religion"), []);
   assert.deepEqual(await interestBuckets("zzqx vvbn"), []);
   assert.ok((await interestBuckets("anime")).length <= 2);
+  // One-word hobbies match their bucket's vocabulary, not just its pages.
+  assert.equal((await interestBuckets("knitting"))[0], "art");
+  assert.equal((await interestBuckets("chess"))[0], "math");
 });

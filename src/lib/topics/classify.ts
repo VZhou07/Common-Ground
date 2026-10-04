@@ -71,20 +71,38 @@ export async function tagPages(items: { title: string; description: string }[], 
   return items.map((item, i) => ({ vector: vs[i], ...tagVector(vs[i], a, item.title) }));
 }
 
+// Every word of every bucket's vocabulary, embedded on its own. Anchors are
+// averages of article pages, so a one-word interest ("knitting", "trains")
+// lands far from all of them; its nearest vocabulary word does not.
+export const bucketWords = () => BUCKETS.flatMap((b, k) => b.about.split(" ").map(word => ({ word, k })));
+let wordsFor: { id: string; words: Promise<{ k: number; v: Float32Array }[]> } | null = null;
+function wordVectors() {
+  const id = activeEmbedderId();
+  if (wordsFor?.id === id) return wordsFor.words;
+  const list = bucketWords();
+  const work = vectors(list.map(w => w.word)).then(vs => list.map((w, i) => ({ k: w.k, v: vs[i] })));
+  wordsFor = { id, words: work };
+  work.catch(() => { if (wordsFor?.words === work) wordsFor = null; });
+  return work;
+}
+
 // ★ CORE-SAFE-5: interest text is embedded and immediately reduced to bucket
 // labels. Sensitive or unmappable text becomes "no stated interest" ([]).
 export async function interestBuckets(text: string): Promise<BucketId[]> {
   const clean = text.replace(/[\u0000-\u001f]/g, " ").trim().slice(0, 30);
   if (clean.length < 2 || isSensitiveText(clean)) return [];
-  const [a, [v]] = await Promise.all([anchors(), vectors([clean])]);
-  const cos = a.map(x => dot(v, x));
+  const [a, words, [v]] = await Promise.all([anchors(), wordVectors(), vectors([clean])]);
+  const nearest = BUCKET_IDS.map(() => -1);
+  for (const w of words) nearest[w.k] = Math.max(nearest[w.k], dot(v, w.v));
+  // Mostly the nearest vocabulary word, partly the bucket's anchor.
+  const cos = a.map((x, k) => 0.7 * nearest[k] + 0.3 * dot(v, x));
   const order = BUCKET_IDS.map((_, k) => k).sort((x, y) => cos[y] - cos[x]);
   const mean = cos.reduce((s, x) => s + x, 0) / cos.length;
   const sd = Math.sqrt(cos.reduce((s, x) => s + (x - mean) ** 2, 0) / cos.length) || 1;
   const z = (k: number) => (cos[k] - mean) / sd;
-  // Unmappable: nothing stands out, or nothing is similar at all.
-  const floor = activeEmbedderId().startsWith("local") ? 0.08 : 0.15;
-  if (cos[order[0]] < floor || z(order[0]) < 1.8) return [];
+  // Unmappable: nothing stands out, or nothing is similar at all. One hashed
+  // collision with a vocabulary word scores ~0.25 offline; real matches ≥ 0.5.
+  if (cos[order[0]] < 0.35 || z(order[0]) < 1.8) return [];
   const out: BucketId[] = [BUCKET_IDS[order[0]]];
   if (z(order[1]) >= 1.4 && z(order[0]) - z(order[1]) < 0.8) out.push(BUCKET_IDS[order[1]]);
   return out;

@@ -10,6 +10,7 @@ import { cachedArticle, cachedOutlink, cachedViews } from "./cache";
 import { checkRoute, makePair, pairTitles, type Pair, type Proposer, type RoutePaths } from "../src/lib/game/makepair";
 import { BUCKET_SEEDS, MATH_SEEDS } from "../src/lib/game/seeds";
 import { BUCKETS, bucketsFromOutlink, type BucketId } from "../src/lib/topics/buckets";
+import { bucketWords } from "../src/lib/topics/classify";
 import { dot, embedder } from "../src/lib/embed/embed";
 import { encodeInt8, pageText, vectors } from "../src/lib/embed/store";
 import type { Article } from "../src/lib/wiki/types";
@@ -58,6 +59,7 @@ async function buildEmbeddings(pages: Record<string, Article>) {
   const topics = existsSync("data/topics.json") ? JSON.parse(readFileSync("data/topics.json", "utf8")) as Record<string, { description: string }> : {};
   for (const [t, v] of Object.entries(topics)) texts.add(pageText(t, v.description));
   for (const b of BUCKETS) texts.add(`${b.label} — ${b.about}`);
+  for (const w of bucketWords()) texts.add(w.word);
   const list = [...texts];
   log(`embeddings: ${list.length} texts with ${e.id}`);
   const prepared = await vectors(list);
