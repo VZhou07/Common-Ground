@@ -97,6 +97,15 @@ test("an injection planted in a page description can't escape the untrusted bloc
   assert.doesNotMatch(prompt, /<system>/);
 });
 
+test("a transport ignoring cancellation still returns the planner fallback on deadline", async () => {
+  setLlmFetch((() => new Promise<Response>(() => {})) as typeof fetch);
+  const started = Date.now();
+  const d = await deliberate({ ...input, deadlineMs: 40 });
+  assert.equal(d.ok, false);
+  assert.equal(!d.ok && d.failure, "timeout");
+  assert.ok(Date.now() - started < 1000);
+});
+
 const facts: ReactionFacts = {
   seed: "s", turn: 2, met: false, gaveUp: false, beatRoute: false, you: "Snow", venn: "Fractal", sensitive: false,
   readRight: true, readBucket: "science", yourBucket: "science", stance: "lead", intent: "math", verdict: "converged",

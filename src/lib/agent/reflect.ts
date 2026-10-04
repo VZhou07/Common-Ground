@@ -3,6 +3,7 @@
 // showing and phrases them for display. The phrasing is never stored.
 import { generateText, Output } from "ai";
 import { z } from "zod";
+import { withDeadline } from "../deadline";
 import { BUCKET_IDS, bucketLabel, isBucket, type BucketId } from "../topics/buckets";
 import { topicTags } from "../wiki/repository";
 import { anthropic, llmEnabled, MODELS, recordUsage } from "../llm";
@@ -121,17 +122,17 @@ export async function consolidate(profile: Profile, state: GameState, pair: Pair
   if (llmEnabled() && touched.length > 1) {
     const model = MODELS.voice();
     try {
-      const result = await generateText({
+      const result = await withDeadline(4000, signal => generateText({
         model: anthropic()(model),
         system: "You are Venn, an AI partner in a cooperative Wikipedia game. Pick up to 3 memories (by id) most worth showing the player after this game, and phrase each warmly in at most 100 characters, about how they play, never who they are. Plain text.",
         prompt: touched.map(m => `${m.id}: ${render(m)}`).join("\n"),
         output: Output.object({ schema: pickSchema }),
         maxOutputTokens: 400,
         maxRetries: 0,
-        abortSignal: AbortSignal.timeout(4000),
-        // A forced JSON tool works on every Claude model, native formats or not.
+        abortSignal: signal,
+        // Haiku 4.5 supports the JSON tool used for these structured picks.
         providerOptions: { anthropic: { structuredOutputMode: "jsonTool" } },
-      });
+      }));
       recordUsage(model, result.usage);
       // ★ CORE-CHECK-5: chosen by candidate ID only; the phrasing is display
       // only, checked like any line, and never stored or re-fed.

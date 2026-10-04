@@ -4,6 +4,7 @@
 import "server-only";
 import { generateText, hasToolCall, isStepCount, tool } from "ai";
 import { z } from "zod";
+import { withDeadline } from "../deadline";
 import { BUCKET_IDS, bucketLabel, isBucket, type BucketId } from "../topics/buckets";
 import { anthropic, clean, MODELS, recordUsage } from "../llm";
 import type { Profile } from "../model/profile";
@@ -86,7 +87,7 @@ export async function deliberate(i: DeliberationInput): Promise<Checked> {
   const shown = new Set(i.context.used.map(u => u.item.id));
   const model = MODELS.think();
   try {
-    const result = await generateText({
+    const result = await withDeadline(i.deadlineMs, signal => generateText({
       model: anthropic()(model),
       system: PERSONA,
       prompt: buildPrompt(i),
@@ -97,7 +98,7 @@ export async function deliberate(i: DeliberationInput): Promise<Checked> {
           inputSchema: z.object({ question: z.string().max(200) }),
           execute: async ({ question }) => {
             if (++calls > 2) return { items: [], note: "recall limit reached; decide now" };
-            const found = await recall(question, i.profile, new Set([...shown, ...recalled.map(r => r.id)]));
+            const found = await recall(question, i.profile, new Set([...shown, ...recalled.map(r => r.id)]), 3, signal);
             recalled.push(...found);
             return { items: found };
           },
@@ -111,9 +112,9 @@ export async function deliberate(i: DeliberationInput): Promise<Checked> {
       stopWhen: [hasToolCall("decide"), isStepCount(4)],
       maxOutputTokens: 1200,
       maxRetries: 0,
-      abortSignal: AbortSignal.timeout(i.deadlineMs),
+      abortSignal: signal,
       providerOptions: { anthropic: { effort: "low" } },
-    });
+    }));
     recordUsage(model, result.totalUsage ?? result.usage);
     // The SDK refuses tool input that doesn't match the schema; report that
     // as a schema failure rather than "no decision".
