@@ -2,7 +2,7 @@
 
 A cooperative Wikipedia game you play with Venn, an AI partner. You start on different Wikipedia pages, each secretly pick one link per turn, and try to land on the same page on the same turn. Venn learns how you play, game after game.
 
-**Live demo:** [add the Vercel URL]
+**Live demo:** [common-ground-kohl.vercel.app]
 
 ## How to play
 
