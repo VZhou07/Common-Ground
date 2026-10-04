@@ -32,6 +32,16 @@
     { "id": "daily-mon", "kind": "daily", "weekday": 1, "bucket": "tech", "routeLength": 2, "you": "Suspension bridge", "venn": "Platonic solid",
       "routes": [ { "you": ["Suspension bridge", "Parabola", "Conic section"], "venn": ["Platonic solid", "Johannes Kepler", "Conic section"] } ] },
     { "id": "daily-tue", "kind": "daily", "weekday": 2, "bucket": "screen", "routeLength": 2, "you": "Minecraft", "venn": "Logarithm",
-      "routes": [ { "you": ["Minecraft", "Procedural generation", "Fractal landscape"], "venn": ["Logarithm", "Fractal", "Fractal landscape"] } ] }
+      "routes": [ { "you": ["Minecraft", "Procedural generation", "Fractal landscape"], "venn": ["Logarithm", "Fractal", "Fractal landscape"] } ] },
+    { "id": "daily-wed", "kind": "daily", "weekday": 3, "bucket": "sports", "routeLength": 3, "you": "Alpine skiing", "venn": "Chaos theory",
+      "routes": [ { "you": ["Alpine skiing", "Snow", "Snowflake", "Koch snowflake"], "venn": ["Chaos theory", "Mandelbrot set", "Fractal", "Koch snowflake"] } ] },
+    { "id": "daily-thu", "kind": "daily", "weekday": 4, "bucket": "music", "routeLength": 3, "you": "Piano", "venn": "Pythagorean theorem",
+      "routes": [ { "you": ["Piano", "Interval (music)", "Musical tuning", "Pythagorean tuning"], "venn": ["Pythagorean theorem", "Pythagoreanism", "Pythagoras", "Pythagorean tuning"] } ] },
+    { "id": "daily-fri", "kind": "daily", "weekday": 5, "bucket": "places", "routeLength": 4, "you": "Venice", "venn": "Pi",
+      "routes": [ { "you": ["Venice", "Silk Road", "Alexandria", "Library of Alexandria", "Eratosthenes"], "venn": ["Pi", "Prime number", "Euclid", "Archimedes", "Eratosthenes"] } ] },
+    { "id": "daily-sat", "kind": "daily", "weekday": 6, "bucket": "history", "routeLength": 4, "you": "Silk Road", "venn": "Conic section",
+      "routes": [ { "you": ["Silk Road", "Venice", "Republic of Venice", "Padua", "Galileo Galilei"], "venn": ["Conic section", "Euclidean geometry", "Euclid", "Archimedes", "Galileo Galilei"] } ] },
+    { "id": "daily-sun", "kind": "daily", "weekday": 0, "bucket": "food", "routeLength": 3, "you": "Cheese", "venn": "Probability",
+      "routes": [ { "you": ["Cheese", "Mozzarella", "Pizza", "Pizza theorem"], "venn": ["Probability", "Game theory", "Fair division", "Pizza theorem"] } ] }
   ]
 }

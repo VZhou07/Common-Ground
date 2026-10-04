@@ -354,5 +354,134 @@
       ]
     },
     "proposer": "reviewed-file"
+  },
+  {
+    "id": "daily-wed",
+    "kind": "daily",
+    "bucket": "sports",
+    "weekday": 3,
+    "routeLength": 3,
+    "you": "Alpine skiing",
+    "venn": "Chaos theory",
+    "meet": "Koch snowflake",
+    "route": {
+      "you": [
+        "Alpine skiing",
+        "Snow",
+        "Snowflake",
+        "Koch snowflake"
+      ],
+      "venn": [
+        "Chaos theory",
+        "Mandelbrot set",
+        "Fractal",
+        "Koch snowflake"
+      ]
+    },
+    "proposer": "reviewed-file"
+  },
+  {
+    "id": "daily-thu",
+    "kind": "daily",
+    "bucket": "music",
+    "weekday": 4,
+    "routeLength": 3,
+    "you": "Piano",
+    "venn": "Pythagorean theorem",
+    "meet": "Pythagorean tuning",
+    "route": {
+      "you": [
+        "Piano",
+        "Interval (music)",
+        "Musical tuning",
+        "Pythagorean tuning"
+      ],
+      "venn": [
+        "Pythagorean theorem",
+        "Pythagoreanism",
+        "Pythagoras",
+        "Pythagorean tuning"
+      ]
+    },
+    "proposer": "reviewed-file"
+  },
+  {
+    "id": "daily-fri",
+    "kind": "daily",
+    "bucket": "places",
+    "weekday": 5,
+    "routeLength": 4,
+    "you": "Venice",
+    "venn": "Pi",
+    "meet": "Eratosthenes",
+    "route": {
+      "you": [
+        "Venice",
+        "Silk Road",
+        "Alexandria",
+        "Library of Alexandria",
+        "Eratosthenes"
+      ],
+      "venn": [
+        "Pi",
+        "Prime number",
+        "Euclid",
+        "Archimedes",
+        "Eratosthenes"
+      ]
+    },
+    "proposer": "reviewed-file"
+  },
+  {
+    "id": "daily-sat",
+    "kind": "daily",
+    "bucket": "history",
+    "weekday": 6,
+    "routeLength": 4,
+    "you": "Silk Road",
+    "venn": "Conic section",
+    "meet": "Galileo Galilei",
+    "route": {
+      "you": [
+        "Silk Road",
+        "Venice",
+        "Republic of Venice",
+        "Padua",
+        "Galileo Galilei"
+      ],
+      "venn": [
+        "Conic section",
+        "Euclidean geometry",
+        "Euclid",
+        "Archimedes",
+        "Galileo Galilei"
+      ]
+    },
+    "proposer": "reviewed-file"
+  },
+  {
+    "id": "daily-sun",
+    "kind": "daily",
+    "bucket": "food",
+    "weekday": 0,
+    "routeLength": 3,
+    "you": "Cheese",
+    "venn": "Probability",
+    "meet": "Pizza theorem",
+    "route": {
+      "you": [
+        "Cheese",
+        "Mozzarella",
+        "Pizza",
+        "Pizza theorem"
+      ],
+      "venn": [
+        "Probability",
+        "Game theory",
+        "Fair division",
+        "Pizza theorem"
+      ]
+    },
+    "proposer": "reviewed-file"
   }
 ]

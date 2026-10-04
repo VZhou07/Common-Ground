@@ -22,10 +22,16 @@ test("every shipped pair's known route still checks against the pinned snapshots
   }
 });
 
-test("the pool has one tutorial, all 12 buckets, and dailies with 2-4 moves", () => {
+test("the pool has one tutorial, all 12 buckets, and one daily per weekday with the planned length", () => {
   assert.equal(pairs.filter(p => p.kind === "tutorial").length, 1);
   assert.equal(new Set(pairs.filter(p => p.kind === "bucket").map(p => p.bucket)).size, 12);
-  for (const p of pairs.filter(p => p.kind === "daily")) assert.ok(p.routeLength >= 2 && p.routeLength <= 4 && p.weekday !== undefined);
+  const dailies = pairs.filter(p => p.kind === "daily");
+  assert.equal(dailies.length, 7);
+  for (let day = 0; day < 7; day++) {
+    const p = dailies.find(p => p.weekday === day);
+    assert.ok(p, `weekday ${day} has a pair`);
+    assert.equal(p.routeLength, [3, 2, 2, 3, 3, 4, 4][day]);
+  }
 });
 
 test("checkRoute rejects broken hops, early meetings, uneven paths and shared starts", async () => {

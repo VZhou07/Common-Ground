@@ -6,7 +6,7 @@ export const MATH_SEEDS = [
   "Fractal", "Golden ratio", "Tessellation", "Fibonacci sequence", "Prime number", "Pi",
   "Möbius strip", "Symmetry", "Topology", "Game theory", "Graph theory", "Probability",
   "Chaos theory", "Knot theory", "Cryptography", "Infinity", "Pythagorean theorem",
-  "Magic square", "Logarithm", "Normal distribution", "Euclidean geometry", "Platonic solid",
+  "Magic square", "Logarithm", "Normal distribution", "Euclidean geometry", "Conic section", "Platonic solid",
 ];
 
 export const BUCKET_SEEDS: Record<BucketId, string[]> = {
