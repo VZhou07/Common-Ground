@@ -4,7 +4,7 @@ import { TAU } from "../closeness/closeness";
 import { eloUpdate } from "../model/elo";
 import { addMove, interestWeights } from "../model/interest";
 import { featureMatrix, learn } from "../model/predictor";
-import { MEMORY_TYPES, type Profile } from "../model/profile";
+import { MEMORY_TYPES, type MemoryItem, type Profile } from "../model/profile";
 import { recordOutcome } from "../model/reliability";
 import { adjustmentOf, combine } from "../context/memory";
 import type { Pending, Verdict } from "../game/state";
@@ -12,6 +12,10 @@ import type { Perception } from "./perceive";
 import { rawFeatures } from "./planner";
 
 export type MoveFacts = { chosen: number; verdict: Verdict; sensitive: boolean; steppedBack: boolean; readRight: boolean; yourBucket: BucketId | null };
+
+// A cited memory can only be right or wrong about a read in its own topic.
+// Theories have no topic and back every read.
+export const backsRead = (m: MemoryItem, read: BucketId | null) => !m.buckets.length || (!!read && m.buckets.includes(read));
 
 export function learnFromMove(profile: Profile, p: Perception, pending: Pending, stated: BucketId[], f: MoveFacts): { profile: Profile; r: number } {
   // ★ CORE-SAFE-7: sensitive moves teach nothing: no weights, no topics.
@@ -41,12 +45,12 @@ export function learnFromMove(profile: Profile, p: Perception, pending: Pending,
   // how intentional the click looked (1 − r). Stepping back isn't interest.
   if (!f.steppedBack) next = { ...next, interest: addMove(next.interest, f.yourBucket, r) };
 
-  // ★ CORE-CTX-2: every memory Venn cited is scored by whether its read was
-  // right; every memory in context is marked as used.
+  // ★ CORE-CTX-2: every memory Venn cited for its read is scored by whether
+  // the read was right; every memory in context is marked as used.
   next = {
     ...next,
     memory: next.memory.map(m => {
-      let out = pending.cited.includes(m.id) ? recordOutcome(m, f.readRight) : m;
+      let out = pending.cited.includes(m.id) && backsRead(m, pending.read.bucket) ? recordOutcome(m, f.readRight) : m;
       if (pending.used.includes(m.id)) out = { ...out, lastUsed: profile.games };
       return out;
     }),

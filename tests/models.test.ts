@@ -5,6 +5,7 @@ import { addMove, interestWeights, statedVsRevealed } from "../src/lib/model/int
 import { featureMatrix, lapse, learn, predict } from "../src/lib/model/predictor";
 import { freshElo, freshProfile, THETA_POP, type MemoryItem } from "../src/lib/model/profile";
 import { recordOutcome, reliability } from "../src/lib/model/reliability";
+import { backsRead } from "../src/lib/agent/learn";
 import { BUCKET_IDS } from "../src/lib/topics/buckets";
 
 const k = BUCKET_IDS.indexOf("history");
@@ -69,6 +70,11 @@ test("memory reliability is a Beta posterior mean", () => {
   const fake: MemoryItem = { id: "m_aaaa", key: "k", type: "theory", buckets: [], situation: Array(24).fill(0), evidence: { confirm: 0, contradict: 0 }, created: 0, lastUsed: -1, scope: "any", sensitive: false, data: { kind: "theory", feature: "hint", delta: 1 } };
   assert.equal(recordOutcome({ ...fake, evidence: { ...fake.evidence } }, true).evidence.confirm, 1);
   assert.equal(recordOutcome({ ...fake, evidence: { ...fake.evidence } }, false).evidence.contradict, 1);
+  // A cited memory is judged only on a read in its own topic; theories on any.
+  const meetInScience: MemoryItem = { ...fake, type: "convention", buckets: ["science"], data: { kind: "convention", bucket: "science", count: 3 } };
+  assert.equal(backsRead(meetInScience, "science"), true);
+  assert.equal(backsRead(meetInScience, "food"), false);
+  assert.equal(backsRead(fake, "food"), true);
 });
 
 test("self-play: Elo finds a player's strong and weak buckets within about 3 games", () => {
