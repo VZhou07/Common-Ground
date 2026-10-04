@@ -40,7 +40,7 @@ for (let turn = 1; turn <= 12; turn++) {
   const move = next ?? "__back__";
   const r = await post("/api/game/move", { token, move, profile });
   const hash = createHash("sha256").update(JSON.stringify([r.reveal.move, r.reveal.nonce])).digest("hex");
-  ok(hash === r.reveal.commitment, `turn ${turn}: you → ${r.turn.you}, Venn → ${r.turn.venn}; commitment verified (${r.ms} ms) “${r.line}”`);
+  ok(hash === t.commitment && r.reveal.commitment === t.commitment, `turn ${turn}: you → ${r.turn.you}, Venn → ${r.turn.venn}; commitment verified (${r.ms} ms) “${r.line}”`);
   token = r.token;
   profile = r.profile;
   if (move === "__back__") stack.pop(); else stack.push(move);

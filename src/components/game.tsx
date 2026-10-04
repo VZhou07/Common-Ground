@@ -37,12 +37,14 @@ export function Game() {
   const token = useRef<string>("");
   const profile = useRef<Profile>(freshProfile());
   const thinking = useRef(0);
+  const starting = useRef(0);
 
   // Venn thinks after each reveal, while you read. The seal button stays
   // disabled until its commitment arrives.
   const think = useCallback(async () => {
     const ticket = ++thinking.current;
     setCommitment(null);
+    setError(null);
     try {
       const t = await api<Think>("/api/game/think", { token: token.current, profile: profile.current });
       if (ticket !== thinking.current) return;
@@ -50,34 +52,44 @@ export function Game() {
       setHint(t.hint);
       setCommitment(t.commitment);
     } catch (e) {
+      if (ticket !== thinking.current) return;
       setError(e instanceof Error ? e.message : "Venn couldn't decide. Try again.");
     }
   }, []);
 
   const start = useCallback(async () => {
+    const ticket = ++starting.current;
+    ++thinking.current;
+    setCommitment(null);
     setError(null); setEnd(null); setReveal(null); setSelected(null); setHint(null); setDc(null);
     profile.current = loadProfile() ?? freshProfile();
     const interest = loadInterest();
     try {
       const s = await api<Start>("/api/game/start", { mode, difficulty, day: localDay(), stated: (interest?.buckets ?? []).map(b => b.id).slice(0, 2), profile: profile.current });
+      if (ticket !== starting.current) return;
       token.current = s.token;
       setGame(s.game); setYou(s.you); setVenn(s.venn); setMeter(s.meter);
       void think();
     } catch (e) {
+      if (ticket !== starting.current) return;
       setError(e instanceof Error ? e.message : "Couldn't start a game.");
     }
   }, [mode, difficulty, think]);
 
   // Starting a game is a request to the server: an external system.
   // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => { void start(); }, [start]);
+  useEffect(() => {
+    void start();
+    return () => { ++starting.current; ++thinking.current; };
+  }, [start]);
 
   async function send(move: string) {
     if (!commitment || busy) return;
     setBusy(true); setError(null);
     try {
       const r = await api<Move>("/api/game/move", { token: token.current, move, profile: profile.current });
-      const verified = await verifyCommitment(r.reveal).catch(() => false);
+      const verified = await verifyCommitment(r.reveal, commitment).catch(() => false);
+      if (!verified) throw new Error("Venn's reveal did not match its earlier commitment. Your move was not accepted locally.");
       token.current = r.token;
       profile.current = r.profile;
       saveProfile(r.profile);
@@ -124,7 +136,7 @@ export function Game() {
                 <button className="btn" disabled={!selected || !commitment || busy} onClick={() => selected && void send(selected)}>{busy ? "Revealing…" : !commitment ? "Venn is still deciding…" : "Seal my move"}</button>
               </span>
             </div>
-            {error && <p className="error" role="alert">{error}</p>}
+            {error && <div role="alert"><p className="error">{error}</p>{!commitment && <button className="btn secondary" onClick={() => void think()}>Retry Venn's turn</button>}</div>}
           </div>
           <aside className="side">
             <VennCard {...venn} hint={commitment ? hint : null} deciding={!commitment} difficulty={difficulty} />

@@ -36,11 +36,12 @@ export const localDay = () => {
 };
 
 // The browser checks Venn's commitment itself: SHA-256 of [move, nonce].
-export async function verifyCommitment(r: { move: string; nonce: string; commitment: string }): Promise<boolean> {
+export async function verifyCommitment(r: { move: string; nonce: string; commitment: string }, expected: string): Promise<boolean> {
+  if (r.commitment !== expected) return false;
   const bytes = new TextEncoder().encode(JSON.stringify([r.move, r.nonce]));
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   const hex = [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
-  return hex === r.commitment;
+  return hex === expected;
 }
 
 export async function api<T>(path: string, body: unknown): Promise<T> {
