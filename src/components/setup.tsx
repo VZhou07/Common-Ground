@@ -17,8 +17,19 @@ export function Setup() {
   const [still, setStill] = useState<string | null>(null);
   const [dailyDone, setDailyDone] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [starting, setStarting] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const saved = useRef<Interest | null>(null);
+  const mapped = useRef<{ text: string; buckets: Chip[] } | null>(null);
+  const latest = useRef("");
+
+  async function mapInterest(v: string): Promise<Chip[]> {
+    if (v.trim().length < 2) return [];
+    if (mapped.current?.text === v) return mapped.current.buckets;
+    const r = await api<{ buckets: Chip[] }>("/api/interest", { text: v });
+    mapped.current = { text: v, buckets: r.buckets };
+    return r.buckets;
+  }
 
   useEffect(() => {
     const i = loadInterest();
@@ -33,6 +44,8 @@ export function Setup() {
     if (i) {
       setText(i.text);
       setChips(i.buckets);
+      mapped.current = { text: i.text, buckets: i.buckets as Chip[] };
+      latest.current = i.text;
       // Venn occasionally checks in: every few games, and with a nudge when
       // where you go has drifted from what you said.
       if (p && i.text && p.games - i.setAtGame >= 3) {
@@ -46,25 +59,29 @@ export function Setup() {
   function onType(value: string) {
     const v = value.slice(0, 30);
     setText(v);
+    latest.current = v;
     setStill(null);
     if (timer.current) clearTimeout(timer.current);
     if (v.trim().length < 2) { setChips([]); return; }
     timer.current = setTimeout(async () => {
       setMapping(true);
       try {
-        const r = await api<{ buckets: Chip[] }>("/api/interest", { text: v });
-        setChips(r.buckets);
-      } catch { setChips([]); } finally { setMapping(false); }
+        const buckets = await mapInterest(v);
+        if (latest.current === v) setChips(buckets);
+      } catch { if (latest.current === v) setChips([]); } finally { if (latest.current === v) setMapping(false); }
     }, 350);
   }
 
-  function start() {
+  async function start() {
+    if (settings.mode === "daily" && dailyDone) { setError("You've played today's daily. Try Unlimited, or come back tomorrow."); return; }
+    setStarting(true);
+    // Start can be clicked before the chips arrive: wait for this text's mapping.
+    const buckets = await mapInterest(text).catch(() => chips);
     const prev = saved.current;
     const changed = !prev || prev.text !== text;
     const p = loadProfile();
-    saveInterest({ text, buckets: chips, setAtGame: changed ? p?.games ?? 0 : prev.setAtGame });
+    saveInterest({ text, buckets, setAtGame: changed ? p?.games ?? 0 : prev.setAtGame });
     saveSettings(settings);
-    if (settings.mode === "daily" && dailyDone) { setError("You've played today's daily. Try Unlimited, or come back tomorrow."); return; }
     router.push(`/play?mode=${settings.mode}&difficulty=${settings.difficulty}`);
   }
 
@@ -107,7 +124,7 @@ export function Setup() {
       </fieldset>
 
       {error && <p className="error" role="alert">{error}</p>}
-      <button className="btn" onClick={start} style={{ marginTop: "0.5rem" }}>Start</button>
+      <button className="btn" onClick={() => void start()} disabled={starting} style={{ marginTop: "0.5rem" }}>{starting ? "Starting…" : "Start"}</button>
     </main>
   );
 }
