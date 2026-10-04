@@ -4,7 +4,7 @@ import type { Considered } from "@/lib/game/state";
 import { ConsideredPanel } from "./considered-panel";
 
 export type RevealData = {
-  turn: number; you: string; venn: string; met: boolean; verdict: "converged" | "diverged" | "neutral";
+  turn: number; you: string; venn: string; met: boolean; gaveUp?: boolean; verdict: "converged" | "diverged" | "neutral";
   line: string; verified: boolean | null; read: string | null; readRight: boolean; considered: Considered;
 };
 
@@ -22,7 +22,7 @@ export function Reveal({ r }: { r: RevealData }) {
       </div>
       <p className="venn-line">“{r.line}”</p>
       <p style={{ margin: 0, display: "flex", gap: "0.8rem", flexWrap: "wrap", alignItems: "baseline" }}>
-        {!r.met && <span className={`verdict ${r.verdict}`}>{VERDICT[r.verdict]}</span>}
+        {!r.met && !r.gaveUp && <span className={`verdict ${r.verdict}`}>{VERDICT[r.verdict]}</span>}
         {r.read && <span className="faint">Venn read: {r.read} {r.readRight ? "✓" : "✗"}</span>}
         <span className="verified">{r.verified === null ? "" : r.verified ? "✓ Venn's sealed move matches its commitment" : "⚠ Commitment mismatch"}</span>
       </p>

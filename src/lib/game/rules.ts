@@ -49,6 +49,6 @@ export const DAILY_LENGTH = [3, 2, 2, 3, 3, 4, 4];
 export function shareText(o: { number?: number; mode: Mode; difficulty: Difficulty; label: Label; moves: number; routeLength: number; verdicts: ("converged" | "diverged" | "neutral")[]; met: boolean }): string {
   const squares = o.verdicts.map(v => (v === "converged" ? "🟩" : v === "diverged" ? "🟥" : "⬜")).join("");
   const head = o.mode === "daily" && o.number ? `Common Ground #${o.number}` : "Common Ground";
-  const result = o.met ? `met in ${o.moves} (known ${o.routeLength})` : `lost each other after ${o.moves}`;
+  const result = `${o.met ? "met in" : "gave up after"} ${o.moves} (known ${o.routeLength})`;
   return `${head} · ${o.difficulty[0].toUpperCase()}${o.difficulty.slice(1)}\n${o.label} · ${result}\n${squares}${o.met ? "🤝" : ""}`;
 }
