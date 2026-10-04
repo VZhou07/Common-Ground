@@ -35,3 +35,10 @@ export const spentToday = () => spend.usd;
 // length-capped and stripped of control characters and angle brackets, so it
 // can't close the <untrusted> block or smuggle in new lines.
 export const clean = (text: string, max: number) => text.replace(/[\u0000-\u001f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
+// The same, for text shown to the player: cut at a word, with an ellipsis.
+export function clip(text: string, max: number): string {
+  const t = clean(text, 10_000);
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), Math.floor(max * 0.6))).replace(/[\s,;:.]+$/, "")}…`;
+}
