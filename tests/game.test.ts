@@ -133,6 +133,7 @@ test("giving up ends the game as Lost each other and still reveals Venn's sealed
   const r = await move({ token: th.token, move: GIVE_UP, profile });
   assert.ok(verify(r.reveal));
   assert.equal(r.end!.label, "Lost each other");
+  assert.equal(r.end!.personalBest.ratio, null);
   assert.equal(r.profile.history.at(-1)!.met, false);
 });
 

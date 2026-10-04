@@ -82,7 +82,7 @@ export async function think(o: { token: string; profile: Profile; deadline?: num
 
 export type EndReport = {
   met: boolean; meet: string | null; moves: number; routeLength: number; label: Label; ratio: number; scoreLine: string;
-  personalBest: { bucket: string; ratio: number; isNew: boolean };
+  personalBest: { bucket: string; ratio: number | null; isNew: boolean };
   knownRoute: { you: string[]; venn: string[] };
   chart: { turn: number; c: number; verdict: Verdict | null; bucket: string | null }[];
   topics: { bucket: string; moves: number }[];
@@ -210,7 +210,7 @@ async function finish(state: GameState, pair: Pair, profile: Profile, meetAt: st
   next = memory.profile;
   const report: EndReport = {
     met: metNow, meet: meetAt, moves, routeLength: pair.routeLength, label: lab, ratio, scoreLine: scoreLine(moves, pair.routeLength, metNow),
-    personalBest: { bucket: bucketLabel(pair.bucket), ratio: isNew ? ratio : prevBest ?? ratio, isNew },
+    personalBest: { bucket: bucketLabel(pair.bucket), ratio: isNew ? ratio : prevBest ?? null, isNew },
     knownRoute: pair.route,
     chart: state.closeness.map((c, i) => ({ turn: i, c, verdict: i === 0 ? null : state.turns[i - 1].verdict, bucket: i === 0 ? null : state.turns[i - 1].bucket ? bucketLabel(state.turns[i - 1].bucket!) : null })),
     topics: [...topicCounts].map(([b, n]) => ({ bucket: bucketLabel(b), moves: n })).sort((a, b) => b.moves - a.moves),
