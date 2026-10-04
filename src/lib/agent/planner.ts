@@ -198,10 +198,9 @@ export function stanceForMove(pl: Plan, title: string, p: Perception): Stance {
   if (roles.includes("rescue") || (pl.rescue && roles.includes("lead"))) return "lead";
   if (roles.includes("follow")) return "follow";
   if (roles.includes("lead")) return "lead";
-  if (roles.includes("meet")) return "hold";
-  // Best overall but no role of its own: describe the move itself. Toward
-  // your page is following, a near neighbour of Venn's page is holding, and
-  // anything else is leading.
+  // Best overall, or a shared link (which can be anywhere): describe the move
+  // itself. Toward your page is following, a near neighbour of Venn's page is
+  // holding, and anything else is leading.
   const x = p.vennOptions.find(o => o.title === title);
   if (!x) return pl.stance;
   if (p.cfn(x.vector, p.you.vector) - p.c > TAU) return "follow";

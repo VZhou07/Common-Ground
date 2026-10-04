@@ -54,11 +54,12 @@ test("rescue switches on at drift 3: lead stance, a rescue role, and rescue valu
   assert.match(hintFor("normal", "lead", "math", true, "x").text, /^Let's regroup/);
 });
 
-test("a move with no shortlist role is described by what it does, not by the plan's stance", () => {
-  // Every planner stance, none of the moves on a shortlist: "I'll follow you"
-  // must never be said for a move that doesn't come toward your page.
-  for (const stance of ["follow", "lead", "hold"] as const) {
-    const pl = { ...plan(input()), stance, shortlist: [] };
+test("a best-only or shared-link move is described by what it does, not by the plan's stance", () => {
+  // "I'll follow you" must never be said for a move that doesn't come toward
+  // your page, whatever the plan's stance and whether or not the move is shared.
+  for (const stance of ["follow", "lead", "hold"] as const) for (const roles of [[], ["meet"]] as const) {
+    const base = plan(input());
+    const pl = { ...base, stance, shortlist: base.scored.map(s => ({ ...s, roles: [...roles] })) };
     for (const x of p.vennOptions) {
       const said = stanceForMove(pl, x.title, p);
       if (said === "follow") assert.ok(p.cfn(x.vector, p.you.vector) - p.c > TAU, x.title);
