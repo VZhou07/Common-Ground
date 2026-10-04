@@ -77,10 +77,12 @@ export function Game() {
   }, [mode, difficulty, think]);
 
   // Starting a game is a request to the server: an external system.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
+  // Unmounting invalidates any start or think still in flight.
   useEffect(() => {
+    const starts = starting, thinks = thinking;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void start();
-    return () => { ++starting.current; ++thinking.current; };
+    return () => { ++starts.current; ++thinks.current; };
   }, [start]);
 
   async function send(move: string) {
@@ -136,7 +138,7 @@ export function Game() {
                 <button className="btn" disabled={!selected || !commitment || busy} onClick={() => selected && void send(selected)}>{busy ? "Revealing…" : !commitment ? "Venn is still deciding…" : "Seal my move"}</button>
               </span>
             </div>
-            {error && <div role="alert"><p className="error">{error}</p>{!commitment && <button className="btn secondary" onClick={() => void think()}>Retry Venn's turn</button>}</div>}
+            {error && <div role="alert"><p className="error">{error}</p>{!commitment && <button className="btn secondary" onClick={() => void think()}>Retry Venn&apos;s turn</button>}</div>}
           </div>
           <aside className="side">
             <VennCard {...venn} hint={commitment ? hint : null} deciding={!commitment} difficulty={difficulty} />
